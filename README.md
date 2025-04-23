@@ -1,12 +1,12 @@
 # 👋 Hi, I'm John Miller
 
-## 🚀 Snowflake Architect | Data Engineer | Educator
+## 🚀 Snowflake Architect | Engineer | Educator
 
 I'm a consulting architect specializing in **Snowflake**, helping teams:
 - Design scalable data architectures
 - Build robust pipelines (ELT/ETL)
 - Optimize performance for complex workloads
-- Automate deployments with **GitHub Actions** and **SchemaChange**
+- Build highly effective teams
 
 ### 🧠 What I’m good at:
 - 🔹 Snowflake SQL, Tasks, Streams, Dynamic Tables
@@ -20,10 +20,9 @@ I'm a consulting architect specializing in **Snowflake**, helping teams:
 - Exploring AI agent orchestration on top of Snowflake
 
 ### 📫 Let’s Connect
-- 🐦 [@john_m_data](https://twitter.com/john_m_data)
-- 💼 [LinkedIn](https://www.linkedin.com/in/johnmillerdata)
-- ✉️ Reach me at john@millbird.com
+- 💼 [LinkedIn](https://www.linkedin.com/in/jymiller)
+- ✉️ Reach me at john@svdsgroup.com
 
 ---
 
-🕊️ *Founder of MillBird — where data engineering meets empathy*
+🕊️ *Founder of SVDSGroup*
