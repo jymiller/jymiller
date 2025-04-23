@@ -1,16 +1,29 @@
-## Hi there 👋
+# 👋 Hi, I'm John Miller
 
-<!--
-**jymiller/jymiller** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## 🚀 Snowflake Architect | Data Engineer | Educator
 
-Here are some ideas to get you started:
+I'm a consulting architect specializing in **Snowflake**, helping teams:
+- Design scalable data architectures
+- Build robust pipelines (ELT/ETL)
+- Optimize performance for complex workloads
+- Automate deployments with **GitHub Actions** and **SchemaChange**
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### 🧠 What I’m good at:
+- 🔹 Snowflake SQL, Tasks, Streams, Dynamic Tables
+- 🔹 Data modeling, profiling, and governance
+- 🔹 GitHub + CI/CD for data teams
+- 🔹 Mentoring developers new to SQL or Snowflake
+
+### 🛠 Current Projects:
+- Helping government agencies modernize their data pipelines
+- Building a training platform for Snowflake developers
+- Exploring AI agent orchestration on top of Snowflake
+
+### 📫 Let’s Connect
+- 🐦 [@john_m_data](https://twitter.com/john_m_data)
+- 💼 [LinkedIn](https://www.linkedin.com/in/johnmillerdata)
+- ✉️ Reach me at john@millbird.com
+
+---
+
+🕊️ *Founder of MillBird — where data engineering meets empathy*
