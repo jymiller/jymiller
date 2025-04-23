@@ -1,6 +1,6 @@
-# 👋 Hi, I'm John Miller
+# 👋 Hi, I'm John Y Miller
 
-## 🚀 Snowflake Architect | Data Engineer | Educator | Part-time Philosopher
+## 🚀 Snowflake Architect | Data Engineer | Educator 
 
 I'm a consulting architect specializing in **Snowflake**, helping teams:
 - Design scalable data architectures
