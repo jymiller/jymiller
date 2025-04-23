@@ -9,14 +9,14 @@ I'm a consulting architect specializing in **Snowflake**, helping teams:
 - Build highly effective teams
 
 ### 🧠 What I’m good at:
-- 🔹 Snowflake SQL, Tasks, Streams, Dynamic Tables
-- 🔹 Data modeling, profiling, and governance
-- 🔹 GitHub + CI/CD for data teams
-- 🔹 Mentoring developers new to SQL or Snowflake
+- 🔹 Coaching and mentoring engineers, analysts and designers
+- 🔹 Snowflake SQL, Tasks, Streams, Dynamic Tables,...
+- 🔹 Data modeling, security, and governance
+- 🔹 Agile Data Strategy 
 
 ### 🛠 Current Projects:
-- Helping government agencies modernize their data pipelines
-- Building a training platform for Snowflake developers
+- Helping government agencies modernize their data platforms and pipelines
+- Working with diverse Snowflake customers learn about Snowflake best practices
 - Exploring AI agent orchestration on top of Snowflake
 
 ### 📫 Let’s Connect
@@ -25,4 +25,4 @@ I'm a consulting architect specializing in **Snowflake**, helping teams:
 
 ---
 
-🕊️ *Founder of SVDSGroup*
+🕊️ *Founder of SVDS Group*
