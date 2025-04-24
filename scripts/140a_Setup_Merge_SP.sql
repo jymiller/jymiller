@@ -1,6 +1,16 @@
-/* 
-The purpose of this demo is to Setup the Merge SP from 130 Merge and Dedup
-*/
+--  140a Setup Merge SP 
+--  
+--  The purpose of this script is to prepare the demo data for the Stored Procedure in 140b
+--  Following these steps: 
+--  1. Create an ORDERS table with 10 rows of sample data (then add Update_Dt and Row_Hash)
+--  2. Create an ORDERS UPDATE table with 4 Updates of OrderKey=1, 1 Update of OrderKey=2, 1 Insert or OrderKey=10 (
+--  3. Print out the TARGET TABLE ROWS (ORDERS) and SOURCE TABLE ROWS (ORDERS_UPDATE)
+--
+--  The audience is folks new to Snowflake with a bit of SQL understanding.
+--
+--  Author:         John Miller
+--  Last Updated:   2025-04-23
+
 
 -- Make sure DB and SC are ready
 create database if not exists toy_db;
