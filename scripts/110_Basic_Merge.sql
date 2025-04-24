@@ -3,7 +3,7 @@
 --  The purpose of this script is to demonstrate a very simple merge statement.
 --  The audience is folks new to Snowflake with a bit of SQL understanding.
 --
---  Author:         John Miller
+--  Author:         John Y Milller
 --  Last Updated:   2025-04-23
 
 
