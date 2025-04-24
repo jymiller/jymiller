@@ -1,3 +1,13 @@
+--  140b Create Merge SP, Run It, Show final TARGET and SOURCE tables
+--  
+--  The purpose of this script is to demonstrate how to create a Stored Procedure around the MERGE SP
+--  Remmber this is just a TOY don't put TOYs into production (without serious hardening!)
+--
+--  The audience is folks new to Snowflake with a bit of SQL understanding.
+--
+--  Author:         John Miller
+--  Last Updated:   2025-04-23
+
 CREATE OR REPLACE PROCEDURE SP_MERGE_DEDUP(
   TARGET_TABLE VARCHAR(16777216),
   SOURCE_TABLE VARCHAR(16777216)
