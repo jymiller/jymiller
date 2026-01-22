@@ -1,21 +1,23 @@
 # 👋 Hi, I'm John Y Miller
 
-## 🚀 Data Architect | Data Engineer | Coach
 
-I'm a consulting architect specializing in **Snowflake**, helping teams:
+## Agentic AI Systems Builder | Agentic Mesh Podcast Host | Data Platform Architect 
+
+If you're considering my help with Snowflake, they called me a Senior Solution Architect when I worked there
+- Started in 2017, Snowflake Practice Leader, 2 years at **Snowflake**, and Snowflake Partners
 - Design scalable data architectures
 - Build robust pipelines (ELT/ETL)
 - Optimize performance for complex workloads
 
-### 🧠 What I’m good at:
-- 🔹 Coaching and mentoring engineers, analysts and designers
-- 🔹 Snowflake SQL, Tasks, Streams, Dynamic Tables,...
-- 🔹 Data modeling, security, and governance
+### What I’m good at with Snowflake
+- Coaching and mentoring architects, engineers, analysts and designers
+- Snowflake SQL, Tasks, Streams, Dynamic Tables,...
+- Snowflake Security, Governance, Data modeling
 
-### 🛠 Current Projects:
+### 🛠 Recent Projects:
 - Helping government agencies modernize their data platforms and pipelines
 - Working with diverse Snowflake customers learn about Snowflake best practices
-- Exploring AI agent orchestration on top of Snowflake
+- Exploring AI agent orchestration in Snowflake
 
 ### 🧪 Sample Scripts  
 Check out some of my Snowflake script examples in the [`/scripts`](./scripts) folder:
