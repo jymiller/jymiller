@@ -1,29 +1,28 @@
 # 👋 Hi, I'm John Y Miller
 
 
-## Agentic AI Systems Builder | Agentic Mesh Podcast Host | Data Platform Architect 
+## Agentic AI Systems Builder | Podcast Host | Data Expert 
 
-If you're considering my help with Snowflake, they called me a Senior Solution Architect when I worked there
-- Started in 2017, Snowflake Practice Leader, 2 years at **Snowflake**, and Snowflake Partners
-- Design scalable data architectures
-- Build robust pipelines (ELT/ETL)
+If you're considering my help with Snowflake, I've led Snowflake Strategy and Implementation
+- Former Snowflake Employee in Professional Services for 2 years as Senior Solution Architect
+- Solution Architect for Data Science Development Environments and Machine Learning Operations
+- Data Architect and Data Engineering Leader
 - Optimize performance for complex workloads
+- Cloud Architecture and security fundamentals
 
 ### What I’m good at with Snowflake
 - Coaching and mentoring architects, engineers, analysts and designers
 - Snowflake SQL, Tasks, Streams, Dynamic Tables,...
-- Snowflake Security, Governance, Data modeling
+- Snowflake Security, Governance, Data Modeling, Semantic Models
+- Private Link, Business Resumption Planning
 
 ### 🛠 Recent Projects:
+- Global Data Strategy implementation of Medallion Architecture, DevOps processes, and Data Contracts in Snowflake
 - Helping government agencies modernize their data platforms and pipelines
 - Working with diverse Snowflake customers learn about Snowflake best practices
-- Exploring AI agent orchestration in Snowflake
-
-### 🧪 Sample Scripts  
-Check out some of my Snowflake script examples in the [`/scripts`](./scripts) folder:
-- Simple Merge 
-- Merge with Row Hash
-- Merge with Dedup
+- Cortex AI services and comparison to extental options (Anthropic/Claude, OpenAI/Codex, Google/Gemini/NotebookLM, CrewAI)
+- 
+### 🧪 Sample Snowflake Scripts [`/scripts`](./scripts)
 
 ### 📫 Let’s Connect
 - 💼 [LinkedIn](https://www.linkedin.com/in/jymiller)
