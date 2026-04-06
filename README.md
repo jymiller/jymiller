@@ -1,7 +1,7 @@
 # 👋 Hi, I'm John Y Miller
 
 
-## Agentic AI Systems Builder | Podcast Host | Data Expert 
+## AI-Native Systems Builder | Podcast Host | Data Expert 
 
 If you're considering my help with Snowflake, I've led Snowflake Strategy and Implementation
 - Former Snowflake Employee in Professional Services for 2 years as Senior Solution Architect
