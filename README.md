@@ -12,9 +12,11 @@ If you're considering my help with Snowflake, I've led Snowflake Strategy and Im
 
 ### What I’m good at with Snowflake
 - Coaching and mentoring architects, engineers, analysts and designers
-- Snowflake SQL, Tasks, Streams, Dynamic Tables,...
-- Snowflake Security, Governance, Data Modeling, Semantic Models
-- Private Link, Business Resumption Planning
+- Cortex Code, Agents, SubAgents, Skills, Memory, Harnesses
+- Snowflake SQL, Tasks, Streams, Dynamic Tables, Stages, Pipes, Catalogs, Iceberg, ...
+- Snowflake Security, Governance, Policies, Tags Data Modeling, Semantic Models
+- Private Link, Private Endpoints, Azure, AWS and Business Resumption Planning
+- A little GCP
 
 ### 🛠 Recent Projects:
 - Global Data Strategy implementation of Medallion Architecture, DevOps processes, and Data Contracts in Snowflake
