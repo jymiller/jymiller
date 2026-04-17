@@ -3,6 +3,11 @@
 
 ## AI-Native Systems Builder | Podcast Host | Data Expert 
 
+Agent AI Systems (specifically Agentic Mesh)
+- Claude Code, Co Work, Skills, SubAgents, Knowledge Management, Memory, Workstrees, Parallel Workers
+- OpenAI Codex - Similar experience as part of the SF Codex Meetup
+- Cortex Code (Snowflake) - Integration with Claude Code
+
 If you're considering my help with Snowflake, I've led Snowflake Strategy and Implementation
 - Former Snowflake Employee in Professional Services for 2 years as Senior Solution Architect
 - Solution Architect for Data Science Development Environments and Machine Learning Operations
