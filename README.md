@@ -3,7 +3,8 @@
 
 ## AI-Native Systems Builder | Podcast Host | Data Expert 
 
-Agent AI Systems (specifically Agentic Mesh)
+Agent AI Systems builders
+- Working on my harness
 - Claude Code, Co Work, Skills, SubAgents, Knowledge Management, Memory, Workstrees, Parallel Workers
 - OpenAI Codex - Similar experience as part of the SF Codex Meetup
 - Cortex Code (Snowflake) - Integration with Claude Code
