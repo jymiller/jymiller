@@ -4,7 +4,7 @@
 ## AI-Native Systems Builder | Podcast Host | Data Expert 
 
 Agent AI Systems builders
-- Working on my harness
+- Working on my harness for all of the things 
 - Claude Code, Co Work, Skills, SubAgents, Knowledge Management, Memory, Workstrees, Parallel Workers
 - OpenAI Codex - Similar experience as part of the SF Codex Meetup
 - Cortex Code (Snowflake) - Integration with Claude Code
