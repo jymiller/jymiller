@@ -3,6 +3,8 @@
 
 ## AI-Native Systems Builder | Podcast Host | Data Expert 
 
+### 🌐 [My one-pager → jymiller.github.io/jymiller](https://jymiller.github.io/jymiller/)
+
 Agent AI Systems builders
 - Working on my harness for all of the things 
 - Claude Code, Co Work, Skills, SubAgents, Knowledge Management, Memory, Worktrees, Parallel Workers
