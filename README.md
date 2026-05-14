@@ -5,7 +5,7 @@
 
 Agent AI Systems builders
 - Working on my harness for all of the things 
-- Claude Code, Co Work, Skills, SubAgents, Knowledge Management, Memory, Workstrees, Parallel Workers
+- Claude Code, Co Work, Skills, SubAgents, Knowledge Management, Memory, Worktrees, Parallel Workers
 - OpenAI Codex - Similar experience as part of the SF Codex Meetup
 - Cortex Code (Snowflake) - Integration with Claude Code
 
@@ -15,6 +15,12 @@ If you're considering my help with Snowflake, I've led Snowflake Strategy and Im
 - Data Architect and Data Engineering Leader
 - Optimize performance for complex workloads
 - Cloud Architecture and security fundamentals
+
+## 🏔️ Community
+
+**Now leading the [Snowflake Bay Area Users Group](https://usergroups.snowflake.com/bay-area/).**
+
+I've just taken over as organizer — bringing Bay Area data practitioners together to share what's working with Snowflake, data engineering, and AI. Come say hi at the next meetup.
 
 ### What I’m good at with Snowflake
 - Coaching and mentoring architects, engineers, analysts and designers
@@ -28,13 +34,20 @@ If you're considering my help with Snowflake, I've led Snowflake Strategy and Im
 - Global Data Strategy implementation of Medallion Architecture, DevOps processes, and Data Contracts in Snowflake
 - Helping government agencies modernize their data platforms and pipelines
 - Working with diverse Snowflake customers learn about Snowflake best practices
-- Cortex AI services and comparison to extental options (Anthropic/Claude, OpenAI/Codex, Google/Gemini/NotebookLM, CrewAI)
-- 
-### 🧪 Sample Snowflake Scripts [`/scripts`](./scripts)
+- Cortex AI services and comparison to external options (Anthropic/Claude, OpenAI/Codex, Google/Gemini/NotebookLM, CrewAI)
+
+### 🧪 Sample Snowflake Scripts
+A working lab of Snowflake patterns I use and teach — see the [`/scripts`](./scripts) and [`/docs`](./docs) folders:
+- [Provisioning scripts](./scripts) — parameterized, turn-key EDW build & teardown
+- [RBAC design & principles](./docs) — two-layer role model, 13 documented best practices
+- Merge patterns — [Basic Merge](./scripts/110_Basic_Merge.sql) → [Row Hash](./scripts/120_Merge_with_Row_Hash.sql) → [Dedup](./scripts/130_Merge_with_Dedup.sql) → [Stored Procedure](./scripts/140b_Merge_SP.sql)
 
 ### 📫 Let’s Connect
 - 💼 [LinkedIn](https://www.linkedin.com/in/jymiller)
+- 🎙️ [The Agentic Mesh Podcast](https://www.youtube.com/@TheAgenticMeshPodcast) — co-host
+- 🏢 [Milbird](https://milbird.com/) — how I deliver services
 - ✉️ Reach me at john@svdsgroup.com
+- 🌐 [jymiller.github.io](https://jymiller.github.io)
 
 ---
 
