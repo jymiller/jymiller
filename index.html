@@ -194,8 +194,11 @@
     .qr-row { position: static; margin: 1.8rem auto 0; width: max-content; }
   }
   @media (max-width: 720px) {
-    .grid { grid-template-columns: 1fr; }
-    .hero { flex-direction: column; text-align: center; }
+    body { padding: 3vh 5vw; }
+    .slide { display: flex; flex-direction: column; }
+    .hero { flex-direction: column; text-align: center; gap: 0.9rem; order: -2; }
+    .grid { grid-template-columns: 1fr; order: -1; margin-top: 1.2rem; }
+    .banner { margin-top: 1.2rem; }
   }
 </style>
 </head>
