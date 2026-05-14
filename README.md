@@ -31,6 +31,8 @@ I've just taken over as organizer — bringing Bay Area data practitioners toget
 - A little GCP
 
 ### 🛠 Recent Projects:
+**⭐ Featured —** [A Governed, AI-Native Snowflake Platform for a Financial-Services Company](https://jymiller.github.io/jymiller/projects/snowflake-financial-platform.html) — 13-week engagement: governed medallion foundation, Azure AD SSO/SCIM, Snowflake-native AI in production (Cortex Agents, Search & Analyst), and a 40-work-area assessment the client's team now runs themselves.
+
 - Global Data Strategy implementation of Medallion Architecture, DevOps processes, and Data Contracts in Snowflake
 - Helping government agencies modernize their data platforms and pipelines
 - Working with diverse Snowflake customers learn about Snowflake best practices

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Snowflake Data Platform — Financial Services | John Y Miller</title>
+<style>
+  :root {
+    --snow-blue: #29b5e8;
+    --snow-light: #7fd8f0;
+    --navy: #0a1929;
+    --navy-2: #11283f;
+    --text: #eaf4f9;
+    --muted: #8fa8bc;
+    --card: rgba(41, 181, 232, 0.07);
+    --card-border: rgba(41, 181, 232, 0.22);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(1100px 600px at 80% -10%, #173a57 0%, var(--navy-2) 45%, var(--navy) 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    line-height: 1.65;
+    padding: 4vh 6vw 8vh;
+  }
+  .page { max-width: 820px; margin: 0 auto; }
+  .back {
+    display: inline-block;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid transparent;
+  }
+  .back:hover { color: var(--snow-blue); border-bottom-color: var(--snow-blue); }
+  .eyebrow {
+    color: var(--snow-blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0.5rem 0 0.6rem;
+  }
+  .sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--muted);
+    margin-bottom: 1.6rem;
+  }
+  .headline {
+    font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--snow-blue);
+    border-radius: 10px;
+    padding: 1.1rem 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 2.4rem;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    text-align: center;
+  }
+  .stat .n {
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-weight: 800;
+    color: var(--snow-blue);
+    line-height: 1.1;
+  }
+  .stat .l {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+  h2 {
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    font-weight: 700;
+    color: var(--snow-light);
+    margin: 2.2rem 0 0.6rem;
+  }
+  p { margin: 0.7rem 0; }
+  ul { margin: 0.7rem 0 0.7rem 0; list-style: none; }
+  li { padding: 0.22rem 0 0.22rem 1.5rem; position: relative; }
+  li::before {
+    content: "❄";
+    position: absolute;
+    left: 0;
+    color: var(--snow-blue);
+  }
+  strong { color: var(--snow-light); font-weight: 700; }
+  .stack {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .stack span {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 99px;
+    padding: 0.3rem 0.85rem;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--card-border);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  footer a {
+    color: var(--snow-blue);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(41, 181, 232, 0.4);
+  }
+  .note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 1.6rem;
+  }
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <a class="back" href="../index.html">← Back to home</a>
+
+    <div class="eyebrow">❄ Featured Project</div>
+    <h1>A Governed, AI-Native Snowflake Platform for a Financial-Services Company</h1>
+    <p class="sub">13-week engagement · assessment, provisioning &amp; production roadmap</p>
+
+    <p class="headline">
+      Over 13 weeks I assessed, provisioned, and planned a production-bound Snowflake
+      platform for a commercial bank — a governed foundation, enterprise identity and
+      security, Snowflake-native AI running in production, and a 40-work-area assessment
+      the client's team now operates themselves.
+    </p>
+
+    <div class="stats">
+      <div class="stat"><div class="n">40</div><div class="l">work areas assessed</div></div>
+      <div class="stat"><div class="n">13&nbsp;wks</div><div class="l">end to end</div></div>
+      <div class="stat"><div class="n">13 / 84</div><div class="l">databases / schemas</div></div>
+      <div class="stat"><div class="n">10-phase</div><div class="l">production roadmap</div></div>
+    </div>
+
+    <h2>The engagement</h2>
+    <p>
+      A commercial bank needed its Snowflake platform taken from early setup to a
+      governed, production-ready foundation. I ran the assessment, did the hands-on
+      provisioning and remediation, and left the team with a sequenced roadmap and the
+      planning system to drive it. The work spanned five areas — platform architecture,
+      provisioning and RBAC, security, data integration, and developer agility — 40
+      distinct work areas in all.
+    </p>
+
+    <h2>A governed platform foundation</h2>
+    <p>
+      I provisioned a dedicated Snowflake account on best-practice foundations: a
+      <strong>medallion data architecture</strong> (Bronze / Silver / Gold plus a staging
+      layer) across development and QA tiers, a shared platform database for cross-cutting
+      objects, and a naming convention applied consistently to every account-level object
+      so code promotes cleanly between environments. 13 databases, 84 schemas, 7
+      workload-isolated warehouses, and Azure storage integration — all under a
+      <strong>two-layer role-based access model</strong> that separates functional roles
+      from access roles on the principle of least privilege: 20 custom roles, a full role
+      hierarchy, and over 3,700 privilege grants.
+    </p>
+
+    <h2>Enterprise identity and security</h2>
+    <p>
+      I integrated enterprise identity end to end — <strong>single sign-on and automated
+      user provisioning through Azure AD</strong> (SAML2 SSO and SCIM) — so identity is
+      managed centrally rather than per-account. I documented the authentication-policy
+      posture (secondary roles, session controls, break-glass access) and produced an
+      ordered <strong>RBAC and ownership remediation runbook</strong> to close the gaps
+      the assessment surfaced: ownership consolidation, scoped service accounts, and
+      default-role hygiene. Network-policy tightening and the production identity setup
+      are sequenced into the roadmap.
+    </p>
+
+    <h2>Source data and a transformation layer</h2>
+    <p>
+      I landed live source data — a CRM data share across the development and QA
+      environments — and stood up the <strong>dbt transformation infrastructure</strong>:
+      external-access and git integrations, native dbt project objects, and a
+      scheduled-task framework. The platform receives real data and is ready to model it.
+    </p>
+
+    <h2>Snowflake-native AI in production</h2>
+    <p>
+      The platform runs AI <strong>natively inside Snowflake</strong> — no external AI
+      infrastructure to secure or operate:
+    </p>
+    <ul>
+      <li>An <strong>AI agent</strong> that answers commercial-lending questions over credit-memo documents (Snowflake Cortex Agents)</li>
+      <li>A <strong>Cortex Search service</strong> indexing source documents for retrieval-augmented answers</li>
+      <li><strong>Five semantic views</strong> — one AI-extended — powering governed, self-service analytics through Cortex Analyst</li>
+      <li>A <strong>Streamlit application</strong> deployed for document-driven workflows</li>
+      <li>Cortex usage and cost monitoring, so AI spend is observable from day one</li>
+    </ul>
+
+    <h2>An assessment — and a system the team runs themselves</h2>
+    <p>
+      I assessed the platform across 40 work areas and left the client more than a
+      report. The deliverable is a <strong>planning system</strong>: a discovery taxonomy
+      and crosswalk (YAML-driven, with build scripts that regenerate the reports), an
+      interactive fix-planner for working the backlog, a snapshot toolchain that captures
+      live account state as evidence, a 10-phase production-standup playbook, and an
+      independent architecture review. Every work area is classified — 12 delivered
+      in-engagement, 10 addressed in the agreed plan, 18 scoped for follow-on — each with
+      evidence or a plan reference. The team operates the system going forward.
+    </p>
+
+    <h2>The stack</h2>
+    <div class="stack">
+      <span>Snowflake</span>
+      <span>Cortex AI — Search, Analyst, Agents</span>
+      <span>dbt</span>
+      <span>Streamlit</span>
+      <span>Azure AD — SSO / SCIM</span>
+      <span>Azure Storage</span>
+      <span>Python tooling</span>
+      <span>Medallion architecture</span>
+      <span>RBAC</span>
+    </div>
+
+    <p class="note">
+      Client name withheld. Figures and outcomes are drawn from the engagement's
+      client-verified closeout.
+    </p>
+
+    <footer>
+      John Y Miller — <a href="../index.html">jymiller.github.io/jymiller</a> ·
+      <a href="https://www.linkedin.com/in/jymiller">LinkedIn</a> ·
+      <a href="https://milbird.com/">Milbird</a>
+    </footer>
+  </main>
+</body>
+</html>
