@@ -6,29 +6,26 @@
 <title>John Y Miller — Snowflake &amp; AI</title>
 <style>
   :root {
-    /* names kept from the original blue theme to keep this a minimal swap;
-       values are now the tech-noir warm palette */
-    --snow-blue: #e0885a;
-    --snow-light: #f0ad84;
-    --navy: #0b0b0f;
-    --navy-2: #15151c;
-    --text: #ebe7e0;
-    --muted: #8c877e;
-    --card: rgba(224, 136, 90, 0.07);
-    --card-border: rgba(224, 136, 90, 0.22);
-    --snowflake: #29b5e8;
+    --snow-blue: #29b5e8;
+    --snow-light: #7fd8f0;
+    --navy: #0a1929;
+    --navy-2: #11283f;
+    --text: #eaf4f9;
+    --muted: #8fa8bc;
+    --card: rgba(41, 181, 232, 0.07);
+    --card-border: rgba(41, 181, 232, 0.22);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: radial-gradient(1200px 600px at 75% -10%, #2a2127 0%, var(--navy-2) 45%, var(--navy) 100%);
+    background: radial-gradient(1200px 600px at 75% -10%, #173a57 0%, var(--navy-2) 45%, var(--navy) 100%);
     color: var(--text);
     min-height: 100%;
     display: flex;
     align-items: safe center;
     justify-content: safe center;
-    padding: 5vh 6vw;
+    padding: 4vh 6vw;
     line-height: 1.5;
   }
   .slide {
@@ -48,7 +45,7 @@
     object-fit: cover;
     flex-shrink: 0;
     border: 3px solid var(--snow-blue);
-    box-shadow: 0 0 0 6px rgba(224, 136, 90, 0.12), 0 8px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 6px rgba(41, 181, 232, 0.12), 0 8px 30px rgba(0, 0, 0, 0.4);
   }
   .hero-text { flex: 1; min-width: 0; }
   h1 {
@@ -106,7 +103,7 @@
   .featured:hover {
     border-color: var(--snow-blue);
     border-left-color: var(--snow-blue);
-    background: rgba(224, 136, 90, 0.11);
+    background: rgba(41, 181, 232, 0.11);
   }
   .featured-label {
     color: var(--snow-blue);
@@ -126,6 +123,15 @@
     color: var(--muted);
     font-size: clamp(0.85rem, 1.4vw, 1rem);
     margin-top: 0.4rem;
+  }
+  .featured-desc p { margin-bottom: 0.55rem; }
+  .featured-desc p:last-child { margin-bottom: 0; }
+  .featured-punchline {
+    margin-top: 0.7rem;
+    font-style: italic;
+    color: var(--snow-light);
+    font-size: clamp(0.88rem, 1.45vw, 1.05rem);
+    line-height: 1.5;
   }
   .featured-more {
     color: var(--snow-light);
@@ -157,14 +163,6 @@
     padding: 0.16rem 0;
   }
   .card li::before { content: "❄  "; color: var(--snow-blue); }
-  /* Snowflake Expertise card — highlighted in Snowflake brand blue */
-  .card-snowflake {
-    background: rgba(41, 181, 232, 0.08);
-    border-color: rgba(41, 181, 232, 0.32);
-    border-left: 3px solid var(--snowflake);
-  }
-  .card-snowflake h3 { color: var(--snowflake); }
-  .card-snowflake li::before { color: var(--snowflake); }
   .links {
     margin-top: 1.5rem;
     display: flex;
@@ -176,33 +174,34 @@
   .links a {
     color: var(--text);
     text-decoration: none;
-    border-bottom: 1px solid rgba(224,136,90,0.45);
+    border-bottom: 1px solid rgba(41,181,232,0.45);
     padding-bottom: 1px;
     transition: color 0.15s ease;
   }
   .links a:hover { color: var(--snow-blue); }
   .links .label { color: var(--muted); }
-  /* Scrolling announcement ticker at the bottom of the slide */
+  /* Scrolling Snowflake newsreel: solid Snowflake-blue bar, white text */
   .ticker {
     display: block;
     margin-top: 1.5rem;
     padding: 0.8rem 0;
-    border-top: 2px solid var(--snowflake);
-    background: rgba(41, 181, 232, 0.06);
+    background: var(--snow-blue);
     overflow: hidden;
-    text-decoration: none;
   }
   .ticker-inner {
     display: inline-block;
     white-space: nowrap;
     padding-left: 100%;
     font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-    color: var(--muted);
-    animation: ticker-scroll 26s linear infinite;
+    color: #fff;
+    animation: ticker-scroll 45s linear infinite;
   }
   .ticker:hover .ticker-inner { animation-play-state: paused; }
-  .ticker strong { color: var(--snowflake); font-weight: 700; }
-  .ticker .cta { color: var(--snowflake); font-weight: 700; }
+  .ticker strong { color: #fff; font-weight: 700; }
+  .ticker .cta { color: #fff; font-weight: 700; }
+  .ticker-story { text-decoration: none; color: inherit; }
+  .ticker-story:hover strong, .ticker-story:hover .cta { text-decoration: underline; }
+  .ticker-sep { color: #fff; margin: 0 1.6rem; opacity: 0.55; }
   @keyframes ticker-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-100%); }
@@ -242,10 +241,17 @@
     </div>
 
     <a class="featured" href="projects/snowflake-financial-platform.html">
-      <div class="featured-label">❄ Featured Project</div>
-      <div class="featured-title">A Governed, AI-Native Snowflake Platform for a Financial-Services Company</div>
-      <div class="featured-desc">13-week engagement — governed medallion foundation, Azure AD SSO/SCIM, Snowflake-native AI in production (Cortex Agents, Search &amp; Analyst), and a 40-work-area assessment the client's team now runs themselves.</div>
-      <div class="featured-more">Read the full write-up →</div>
+      <div class="featured-label">❄ The Work</div>
+      <div class="featured-title">I build AI systems — and host the conversations with the founders building them.</div>
+      <div class="featured-desc">
+        <p>My work sits at the intersection of enterprise data architecture, production AI, and founder-led innovation. I design and build governed Snowflake and Azure platforms, medallion architectures, semantic layers, knowledge graphs, intelligence agents, and AI-assisted delivery workflows.</p>
+        <p>I also host the other side of that work: founder conversations, panels, speaking engagements, and advisory discussions with people building the next generation of AI companies.</p>
+      </div>
+      <div class="featured-punchline">
+        The building keeps the conversations grounded.<br>
+        The conversations keep the building current.
+      </div>
+      <div class="featured-more">See a recent build →</div>
     </a>
 
     <div class="grid">
@@ -257,7 +263,7 @@
           <li>Knowledge management &amp; parallel workers</li>
         </ul>
       </div>
-      <div class="card card-snowflake">
+      <div class="card">
         <h3>Snowflake Expertise</h3>
         <ul>
           <li>SQL, Tasks, Streams, Dynamic Tables, Pipes, Iceberg</li>
@@ -268,9 +274,9 @@
       <div class="card">
         <h3>Recent Work</h3>
         <ul>
+          <li>AI-Native Snowflake Platform for Financial Services</li>
           <li>Medallion Architecture, DevOps &amp; Data Contracts</li>
           <li>Government data platform modernization</li>
-          <li>Cortex AI vs. Anthropic, OpenAI, Google, CrewAI</li>
         </ul>
       </div>
       <div class="card">
@@ -287,14 +293,19 @@
       <span><span class="label">GitHub</span> &nbsp;<a href="https://github.com/jymiller">github.com/jymiller</a></span>
       <span><span class="label">LinkedIn</span> &nbsp;<a href="https://www.linkedin.com/in/jymiller">in/jymiller</a></span>
       <span><span class="label">Podcast</span> &nbsp;<a href="https://www.youtube.com/@TheAgenticMeshPodcast">The Agentic Mesh Podcast</a></span>
-      <span><span class="label">Company</span> &nbsp;<a href="https://milbird.com/">milbird.com</a></span>
-      <span><span class="label">Email</span> &nbsp;<a href="mailto:john@svdsgroup.com">john@svdsgroup.com</a></span>
-      <span class="label">🕊️ Founder of SVDS Group</span>
+      <span><span class="label">Email</span> &nbsp;<a href="mailto:john@milbird.com">john@milbird.com</a></span>
+      <a class="label" href="https://milbird.com/">🕊️ Founder of MILBIRD</a>
     </div>
 
-    <a class="ticker" href="https://usergroups.snowflake.com/bay-area/">
-      <span class="ticker-inner">🏔️ <strong>Now leading the Snowflake Bay Area Users Group</strong> — bringing the community together around Snowflake, data engineering, and AI. &nbsp;·&nbsp; usergroups.snowflake.com/bay-area &nbsp;·&nbsp; <span class="cta">Click here →</span></span>
-    </a>
+    <div class="ticker">
+      <span class="ticker-inner">
+        <a class="ticker-story" href="https://usergroups.snowflake.com/bay-area/">🏔️ <strong>Now leading the Snowflake Bay Area Users Group</strong> — bringing the community together around Snowflake, data engineering, and AI. &nbsp;·&nbsp; <span class="cta">Click here →</span></a>
+        <span class="ticker-sep">❄</span>
+        <a class="ticker-story" href="https://luma.com/i78wufyv?tk=2Beg7k">🤝 <strong>CoCo Labs</strong> — Met Thursday, May 14. &nbsp;·&nbsp; <span class="cta">View event →</span></a>
+        <span class="ticker-sep">❄</span>
+        <a class="ticker-story" href="https://www.snowflake.com/en/dev-day">🛠️ <strong>Next CoCo Meet-up: Snowflake Dev Day, June 4</strong> &nbsp;·&nbsp; <span class="cta">Details →</span></a>
+      </span>
+    </div>
   </main>
 </body>
 </html>
