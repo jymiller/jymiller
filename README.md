@@ -50,9 +50,9 @@ A working lab of Snowflake patterns I use and teach — see the [`/scripts`](./s
 - 💼 [LinkedIn](https://www.linkedin.com/in/jymiller)
 - 🎙️ [The Agentic Mesh Podcast](https://www.youtube.com/@TheAgenticMeshPodcast) — co-host
 - 🏢 [Milbird](https://milbird.com/) — how I deliver services
-- ✉️ Reach me at john@svdsgroup.com
+- ✉️ Reach me at john@milbird.com
 - 🌐 [jymiller.github.io/jymiller](https://jymiller.github.io/jymiller/)
 
 ---
 
-🕊️ *Founder of SVDS Group*
+🕊️ *Founder of [MILBIRD](https://milbird.com/)*
