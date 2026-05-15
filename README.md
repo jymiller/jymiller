@@ -1,11 +1,13 @@
 # 👋 Hi, I'm John Y Miller
 
 
-## AI-Native Systems Builder | Podcast Host | Data Expert 
+## AI-Native Systems Builder | Data Architect | Founder Conversations 
+I build AI systems and host conversations with the founders building them.
+
 
 ### 🌐 [My one-pager → jymiller.github.io/jymiller](https://jymiller.github.io/jymiller/)
 
-Agent AI Systems builders
+Agent AI Systems builder
 - Working on my harness for all of the things 
 - Claude Code, Co Work, Skills, SubAgents, Knowledge Management, Memory, Worktrees, Parallel Workers
 - OpenAI Codex - Similar experience as part of the SF Codex Meetup
@@ -28,7 +30,7 @@ I've just taken over as organizer — bringing Bay Area data practitioners toget
 - Coaching and mentoring architects, engineers, analysts and designers
 - Cortex Code, Agents, SubAgents, Skills, Memory, Harnesses
 - Snowflake SQL, Tasks, Streams, Dynamic Tables, Stages, Pipes, Catalogs, Iceberg, ...
-- Snowflake Security, Governance, Policies, Tags Data Modeling, Semantic Models
+- Snowflake Security, Governance, Policies, Tagging, Data Modeling, Semantic Models
 - Private Link, Private Endpoints, Azure, AWS and Business Resumption Planning
 - A little GCP
 
@@ -37,8 +39,8 @@ I've just taken over as organizer — bringing Bay Area data practitioners toget
 
 - Global Data Strategy implementation of Medallion Architecture, DevOps processes, and Data Contracts in Snowflake
 - Helping government agencies modernize their data platforms and pipelines
-- Working with diverse Snowflake customers learn about Snowflake best practices
-- Cortex AI services and comparison to external options (Anthropic/Claude, OpenAI/Codex, Google/Gemini/NotebookLM, CrewAI)
+- Helping diverse Snowflake customers learn about Snowflake platform architecture and best practices
+- Exploring Snowflake Intelligence, Cortex Code, Agents, Semantic Search, Document Processing, Knowledge Management
 
 ### 🧪 Sample Snowflake Scripts
 A working lab of Snowflake patterns I use and teach — see the [`/scripts`](./scripts) and [`/docs`](./docs) folders:
