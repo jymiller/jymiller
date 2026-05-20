@@ -1,7 +1,7 @@
 # 👋 Hi, I'm John Y Miller
 
 
-## AI-Native Systems Builder | Data Architect | Founder Conversations 
+## AI Systems Builder | Data Architect | Founder Conversations 
 I build AI systems and host conversations with the founders building them.
 
 
