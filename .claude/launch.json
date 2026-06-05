@@ -6,6 +6,18 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8772"],
       "port": 8772
+    },
+    {
+      "name": "jayplusone",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8773", "-d", "/Users/johnmiller/Downloads/source/jayplusone"],
+      "port": 8773
+    },
+    {
+      "name": "agents-training",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8774", "-d", "/Users/johnmiller/Downloads/source/agents-training"],
+      "port": 8774
     }
   ]
 }
