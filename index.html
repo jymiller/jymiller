@@ -139,6 +139,45 @@
     font-weight: 600;
     margin-top: 0.5rem;
   }
+  /* The positioning block is a statement, not a link — neutralize hover */
+  .featured.statement { cursor: default; }
+  .featured.statement:hover {
+    border-color: var(--card-border);
+    border-left-color: var(--snow-light);
+    background: var(--card);
+  }
+  /* Recent Gigs — one project card per engagement */
+  .section-label {
+    color: var(--snow-blue);
+    font-size: clamp(0.72rem, 1.2vw, 0.85rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 1.6rem 0 0.7rem;
+  }
+  .gigs-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .gig {
+    display: block;
+    padding: 1.1rem 1.3rem;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--snow-light);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .gig:hover {
+    border-color: var(--snow-blue);
+    border-left-color: var(--snow-blue);
+    background: rgba(41, 181, 232, 0.11);
+  }
+  .gig-title { color: var(--text); font-size: clamp(0.98rem, 1.7vw, 1.15rem); font-weight: 700; line-height: 1.3; }
+  .gig-desc { color: var(--muted); font-size: clamp(0.82rem, 1.35vw, 0.95rem); margin-top: 0.45rem; }
+  .gig-more { color: var(--snow-light); font-size: clamp(0.8rem, 1.3vw, 0.92rem); font-weight: 600; margin-top: 0.6rem; }
   .grid {
     margin-top: 1.5rem;
     display: grid;
@@ -216,6 +255,7 @@
     .qr-row { width: 100%; }
     .qr img { width: 144px; height: 144px; }
     .grid { grid-template-columns: 1fr; }
+    .gigs-row { grid-template-columns: 1fr; }
     .links { justify-content: center; text-align: center; }
   }
 </style>
@@ -240,7 +280,7 @@
       </div>
     </div>
 
-    <a class="featured" href="projects/snowflake-financial-platform.html">
+    <div class="featured statement">
       <div class="featured-label">❄ The Work</div>
       <div class="featured-title">I build AI systems and host conversations with the founders building them.</div>
       <div class="featured-desc">
@@ -251,17 +291,21 @@
         The building keeps the conversations grounded.<br>
         The conversations keep the building current.
       </div>
-      <div class="featured-more">See a recent build →</div>
-    </a>
+    </div>
 
-    <a class="featured" href="projects/ai-lending-case-study.html">
-      <div class="featured-label">❄ Case Study · Applied AI</div>
-      <div class="featured-title">Turning lending documents into an AI-powered data asset</div>
-      <div class="featured-desc">
-        <p>Snowflake-native AI — Cortex Agents, Search, and Analyst — that turns a specialty healthcare-practice lender's unstructured documents into queryable intelligence, plus a reusable knowledge-discovery framework so the next document type follows the same path.</p>
-      </div>
-      <div class="featured-more">Read the case study →</div>
-    </a>
+    <div class="section-label">❄ Recent Gigs</div>
+    <div class="gigs-row">
+      <a class="gig" href="projects/snowflake-financial-platform.html">
+        <div class="gig-title">Secure Banking Data Platform — Dev to Prod</div>
+        <div class="gig-desc">A governed, defense-in-depth Snowflake environment for a commercial bank: enterprise identity, two-layer RBAC, a medallion foundation, and repeatable dev → prod provisioning.</div>
+        <div class="gig-more">View the build →</div>
+      </a>
+      <a class="gig" href="projects/ai-lending-case-study.html">
+        <div class="gig-title">Lending Documents → an AI-Powered Data Asset</div>
+        <div class="gig-desc">Snowflake-native AI — Cortex Agents, Search, and Analyst — that turns a healthcare-practice lender's documents into queryable intelligence, plus a reusable framework.</div>
+        <div class="gig-more">Read the case study →</div>
+      </a>
+    </div>
 
     <div class="grid">
       <div class="card">

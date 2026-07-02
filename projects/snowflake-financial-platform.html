@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Snowflake Data Platform — Financial Services | John Y Miller</title>
+<title>Secure Banking Data Platform — Dev to Prod | John Y Miller</title>
 <style>
   :root {
     --snow-blue: #29b5e8;
@@ -329,22 +329,23 @@
   <main class="page">
     <a class="back" href="../index.html">← Back to home</a>
 
-    <div class="eyebrow">❄ A Recent Build</div>
-    <h1>A Governed, AI-Native Snowflake Platform for a Financial-Services Company</h1>
-    <p class="sub">13-week engagement · assessment, provisioning &amp; production roadmap</p>
+    <div class="eyebrow">❄ Secure Banking Platform</div>
+    <h1>A Secure, Governed Snowflake Platform for a Bank — Dev to Prod</h1>
+    <p class="sub">13-week engagement · secure environment build across dev, QA &amp; prod</p>
 
     <p class="headline">
-      Over 13 weeks I assessed, provisioned, and planned a production-bound Snowflake
-      platform for a commercial bank — a governed foundation, enterprise identity,
-      source data flowing with a dbt transformation layer, Snowflake-native AI running
-      in production, and a 40-work-area assessment the client's team now operates themselves.
+      Over 13 weeks I stood up a secure, governed Snowflake environment for a commercial
+      bank and carried it from dev and QA toward production — enterprise identity, two-layer
+      RBAC, defense-in-depth controls, a medallion data foundation with a dbt transformation
+      layer, and repeatable build scripts so prod comes up from the same source as non-prod.
+      Plus a 40-work-area assessment the client's team now operates itself.
     </p>
 
     <div class="stats">
-      <div class="stat"><div class="n">40</div><div class="l">work areas assessed</div></div>
+      <div class="stat"><div class="n">2 accts</div><div class="l">NONPROD (dev · QA) + PROD</div></div>
       <div class="stat"><div class="n">13&nbsp;wks</div><div class="l">end to end</div></div>
-      <div class="stat"><div class="n">13 / 84</div><div class="l">databases / schemas</div></div>
-      <div class="stat"><div class="n">10-phase</div><div class="l">production roadmap</div></div>
+      <div class="stat"><div class="n">20</div><div class="l">RBAC roles · 3,700+ grants</div></div>
+      <div class="stat"><div class="n">4-layer</div><div class="l">defense-in-depth security</div></div>
     </div>
 
     <h2>Architecture — Cloud &amp; Data</h2>
@@ -435,12 +436,12 @@
         </ul>
       </div>
       <div class="outcome">
-        <h3>Snowflake-Native AI in Production</h3>
+        <h3>Repeatable Dev → Prod Provisioning</h3>
         <ul>
-          <li>AI agent for commercial-lending Q&amp;A over credit memos (Cortex Agents)</li>
-          <li>Cortex Search service indexing source documents</li>
-          <li>5 semantic views (1 AI-extended) via Cortex Analyst</li>
-          <li>Streamlit app deployed; Cortex cost monitoring in place</li>
+          <li>NONPROD (dev + QA) built first; PROD stands up from the same scripts</li>
+          <li>Turn-key build scripts regenerate the environment end to end</li>
+          <li>Environment parity — identical architecture, isolated data &amp; credentials</li>
+          <li>Snowflake-native AI &amp; BI workloads run on the governed foundation</li>
         </ul>
       </div>
       <div class="outcome wide">
