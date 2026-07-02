@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Systems — Case Study (Healthcare-Practice Lending) | John Y Miller</title>
+<style>
+  :root {
+    --bg: #0a0e1a; --bg-2: #0b1226; --card: #1e293b; --card-2: #172033;
+    --border: #334155; --text: #cbd5e1; --muted: #94a3b8; --heading: #f8fafc;
+    --blue: #38bdf8; --green: #4ade80; --amber: #fbbf24; --teal: #2dd4bf;
+    --purple: #c084fc; --orange: #fb923c; --pink: #f472b6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6; font-size: 14.5px;
+  }
+  .shell { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+  code { font-family: ui-monospace, Menlo, monospace; font-size: 0.85em; background: var(--bg-2); border: 1px solid var(--border); padding: 1px 6px; border-radius: 4px; color: var(--teal); }
+
+  header.top { border-bottom: 1px solid var(--border); padding-bottom: 1.6rem; margin-bottom: 1.6rem; }
+  header.top .kicker { color: var(--purple); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; }
+  header.top h1 { font-size: 1.9rem; color: var(--heading); font-weight: 700; letter-spacing: -0.01em; margin-top: 0.3rem; }
+  header.top .sub { color: var(--muted); font-size: 1.02rem; margin-top: 0.5rem; max-width: 82ch; }
+  header.top .role { color: var(--text); font-size: 0.95rem; margin-top: 0.8rem; max-width: 82ch; }
+  header.top .role b { color: var(--heading); }
+  header.top .byline { color: var(--muted); font-size: 0.82rem; margin-top: 0.9rem; }
+  header.top .byline b { color: var(--text); }
+
+  /* Pillars */
+  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1.6rem 0 0.4rem; }
+  .pillar { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--purple); border-radius: 9px; padding: 0.85rem 0.95rem; }
+  .pillar .n { color: var(--heading); font-size: 1.5rem; font-weight: 700; line-height: 1; }
+  .pillar .l { color: var(--muted); font-size: 0.8rem; margin-top: 0.35rem; }
+  .pillar.p1 { border-top-color: var(--green); }
+  .pillar.p2 { border-top-color: var(--purple); }
+  .pillar.p3 { border-top-color: var(--blue); }
+  .pillar.p4 { border-top-color: var(--amber); }
+
+  h2 { font-size: 1.3rem; color: var(--heading); font-weight: 700; margin: 2.8rem 0 0.3rem; display: flex; align-items: baseline; gap: 0.6rem; }
+  h2 .sec { font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem; color: var(--purple); background: var(--bg-2); border: 1px solid var(--border); border-radius: 5px; padding: 1px 8px; }
+  .h2sub { color: var(--muted); font-size: 0.95rem; margin: 0.3rem 0 1.1rem; max-width: 84ch; }
+
+  h3 { font-size: 1.02rem; color: var(--heading); font-weight: 700; margin: 1.3rem 0 0.5rem; }
+
+  /* Build cards */
+  .builds { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+  .build { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 9px; padding: 0.95rem 1.1rem; }
+  .build .bh { color: var(--heading); font-weight: 700; font-size: 1rem; }
+  .build .live { display: inline-block; background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 0 6px; font-size: 0.66rem; font-weight: 700; margin-left: 0.4rem; vertical-align: middle; }
+  .build .bd { color: var(--text); font-size: 0.9rem; margin-top: 0.35rem; }
+  .build .meta { color: var(--muted); font-size: 0.76rem; margin-top: 0.5rem; font-family: ui-monospace, Menlo, monospace; line-height: 1.5; }
+  .build .meta b { color: var(--teal); font-weight: 600; }
+
+  /* Outcomes band */
+  .outcomes-lead { font-size: 1.15rem; color: var(--heading); font-weight: 700; margin: 2.2rem 0 0.3rem; }
+  .outcomes-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.1rem; }
+  .outcomes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+  .oc { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 10px; padding: 0.95rem 1.15rem; }
+  .oc .oh { color: var(--heading); font-weight: 700; font-size: 1.02rem; }
+  .oc .ob { color: var(--text); font-size: 0.9rem; margin-top: 0.35rem; }
+  .oc .oe { color: var(--muted); font-size: 0.78rem; margin-top: 0.5rem; }
+  .oc .oe b { color: var(--teal); font-weight: 600; }
+  .oc.c2 { border-left-color: var(--purple); }
+  .oc.c3 { border-left-color: var(--blue); }
+  .oc.c4 { border-left-color: var(--amber); }
+
+  /* Layers / phases */
+  .layers { display: flex; flex-direction: column; gap: 0.5rem; }
+  .lyr { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; display: grid; grid-template-columns: 42px 1fr; gap: 0.9rem; align-items: start; }
+  .lyr .num { font-family: ui-monospace, Menlo, monospace; font-weight: 700; color: var(--purple); font-size: 1.1rem; text-align: center; }
+  .lyr .t { color: var(--heading); font-weight: 700; font-size: 0.95rem; }
+  .lyr .d { color: var(--muted); font-size: 0.86rem; margin-top: 0.15rem; }
+
+  .phases { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+  .ph { background: var(--card-2); border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem 0.75rem; }
+  .ph .pn { font-family: ui-monospace, Menlo, monospace; color: var(--amber); font-size: 0.72rem; font-weight: 700; }
+  .ph .pt { color: var(--heading); font-weight: 600; font-size: 0.85rem; margin-top: 0.2rem; }
+  .ph .pd { color: var(--muted); font-size: 0.76rem; margin-top: 0.25rem; }
+
+  table { width: 100%; border-collapse: collapse; margin: 0.7rem 0; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  td b { color: var(--heading); }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.55rem; margin: 0.6rem 0; }
+  .stat { background: linear-gradient(135deg, rgba(45,212,191,0.08), rgba(45,212,191,0.02)); border: 1px solid rgba(45,212,191,0.3); border-radius: 8px; padding: 0.75rem 0.9rem; }
+  .stat .v { color: var(--heading); font-size: 1.35rem; font-weight: 700; line-height: 1; }
+  .stat .l { color: var(--muted); font-size: 0.76rem; margin-top: 0.3rem; }
+
+  .callout { background: rgba(192,132,252,0.06); border: 1px solid rgba(192,132,252,0.32); border-radius: 8px; padding: 0.85rem 1.05rem; margin: 1.2rem 0; font-size: 0.92rem; }
+  .callout b { color: var(--purple); }
+
+  ul.tight { margin: 0.5rem 0 0.5rem 1.2rem; } ul.tight li { margin: 0.3rem 0; }
+
+  /* Stack chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; margin-top: 0.4rem; }
+  .chips span { font-size: 0.82rem; background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; color: var(--text); white-space: nowrap; }
+
+  footer { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.86rem; }
+  footer .name { color: var(--heading); font-weight: 700; font-size: 1rem; }
+  footer .tag { color: var(--purple); font-size: 0.82rem; margin-top: 0.15rem; }
+  footer .links { margin-top: 0.6rem; }
+  footer .links a { color: var(--blue); text-decoration: none; }
+  footer .links a:hover { text-decoration: underline; }
+  footer .fine { color: var(--muted); font-size: 0.78rem; margin-top: 0.9rem; }
+
+  @media (max-width: 760px) {
+    .pillars, .builds, .stats, .outcomes { grid-template-columns: repeat(2, 1fr); }
+    .phases { grid-template-columns: 1fr 1fr; }
+  }
+  a.home { display: inline-block; color: var(--blue); text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.4rem; }
+  a.home:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<a class="home" href="../index.html">← Back to home</a>
+
+<header class="top">
+  <div class="kicker">Case Study · Data &amp; AI Architecture</div>
+  <h1>Turning lending documents into an AI-powered data asset</h1>
+  <div class="sub">
+    How a specialty healthcare-practice lender turned the unstructured documents
+    it already receives — practice-sale prospectuses, credit memos, financials —
+    into queryable intelligence using Snowflake-native AI, plus a reusable
+    framework so the next document type follows the same path.
+  </div>
+  <div class="role">
+    <b>My role:</b> data &amp; AI architect and hands-on builder. Over a
+    multi-month engagement I designed and built the applied-AI stack, the
+    knowledge-discovery framework, the document knowledge base, and the
+    productization strategy — and ran the AI-native workflow used to build it.
+  </div>
+  <div class="byline">Snowflake Cortex (native AI) · Claude Code + Cortex Code · 2026 · <em>client details anonymized</em></div>
+</header>
+
+<div class="pillars">
+  <div class="pillar p1"><div class="n">4</div><div class="l">AI apps built &amp; running (agent, search, semantic views, app)</div></div>
+  <div class="pillar p2"><div class="n">67</div><div class="l">documents run through an AI discovery pipeline (61 analyzed)</div></div>
+  <div class="pillar p3"><div class="n">460→25</div><div class="l">raw source terms normalized to canonical fields</div></div>
+  <div class="pillar p4"><div class="n">5</div><div class="l">AI-powered data products scoped &amp; mapped to personas</div></div>
+</div>
+
+<div class="callout">
+  <b>The through-line.</b> Every loan the lender makes brings in unstructured
+  documents — practice-sale prospectuses, credit memos, financials. This work
+  turned those documents into <b>queryable intelligence</b> using Snowflake-native
+  AI (no data leaves the platform), and codified the <b>how</b> into a reusable
+  framework so the next document type follows the same path. The result is a
+  compounding, proprietary data asset — not a one-off model.
+</div>
+
+<!-- ══════════════ AI outcomes ══════════════ -->
+<div class="outcomes-lead">AI outcomes — what the work delivers</div>
+<div class="outcomes-sub">The business results the AI work drives, and what enables each one.</div>
+<div class="outcomes">
+  <div class="oc c1">
+    <div class="oh">Underwriting from hours to minutes</div>
+    <div class="ob">A borrower uploads a prospectus; AI extracts the canonical fields and pre-populates the credit memo. The underwriter reviews instead of re-keys — collapsing manual data entry per loan.</div>
+    <div class="oe">enabled by the <b>credit-memo agent</b> + <b>AI_EXTRACT</b> extraction schema</div>
+  </div>
+  <div class="oc c2">
+    <div class="oh">A proprietary data asset no competitor has</div>
+    <div class="ob">A normalized, queryable database of practice economics across 12+ brokers — the foundation of the benchmarking products and the investor narrative. Institutional knowledge encoded in YAML, not people's heads.</div>
+    <div class="oe">enabled by the <b>Knowledge Discovery Framework</b> + <b>controlled vocabulary</b></div>
+  </div>
+  <div class="oc c3">
+    <div class="oh">Customer-facing intelligence, self-service</div>
+    <div class="ob">Borrowers and loan officers get instant benchmarking and plain-language search over the document corpus — new revenue products and better deal conversations, served without exposing raw tables.</div>
+    <div class="oe">enabled by <b>Cortex Search</b> + <b>semantic views</b> (Cortex Analyst)</div>
+  </div>
+  <div class="oc c4">
+    <div class="oh">Each new document type gets cheaper</div>
+    <div class="ob">The methodology is reusable — the next corpus follows the same 5-phase path at lower cost because the framework, schema pattern, and AI-native workflow already exist. A compounding capability, not a one-off build.</div>
+    <div class="oe">enabled by the <b>4-layer / 5-phase framework</b> + <b>dual-agent model</b></div>
+  </div>
+</div>
+
+<!-- ══════════════ 1 ══════════════ -->
+<h2><span class="sec">01</span> Applied AI — built and running</h2>
+<div class="h2sub">Snowflake-native AI deployed and working in the analytics account — real objects, real data, callable. Not slideware.</div>
+<div class="builds">
+  <div class="build">
+    <div class="bh">Credit Memo Analyst agent <span class="live">LIVE</span></div>
+    <div class="bd">A Cortex Agent that extracts and interprets commercial-lending credit memos in natural language — borrower profiles, loan structure, risk ratings, collateral, DSCR/LTV, repayment sources. Orchestrates two tools: semantic search + a structured extraction function.</div>
+    <div class="meta">
+      Cortex Agent · orchestration auto · 60s / 16k-token budget<br>
+      search tool → <b>credit-memo Cortex Search service</b><br>
+      extract tool → <b>EXTRACT_CREDIT_DATA</b> UDF on the compute warehouse
+    </div>
+  </div>
+  <div class="build">
+    <div class="bh">Cortex Search service <span class="live">LIVE</span></div>
+    <div class="bd">A managed retrieval index over source documents — the backbone of document Q&amp;A and the agent's search tool. Chunked + embedded narrative content, queried semantically.</div>
+    <div class="meta">
+      service: <b>READ_CREDIT_MEMO</b> · 39 docs indexed<br>
+      title column: RELATIVE_PATH · max 10 results
+    </div>
+  </div>
+  <div class="build">
+    <div class="bh">Semantic views (Cortex Analyst) <span class="live">LIVE</span></div>
+    <div class="bd">Five governed text-to-SQL semantic views powering self-service analytics without exposing raw tables. One is AI-extended for provider-compensation benchmarking.</div>
+    <div class="meta">
+      <b>PROVIDER_COMPENSATION_SV</b> (AI-extended)<br>
+      CREDIT_MEMO_DEALS_SV ×2 · LOAN_ANALYSIS_SV ×2
+    </div>
+  </div>
+  <div class="build">
+    <div class="bh">Documentation Streamlit app <span class="live">LIVE</span></div>
+    <div class="bd">A Streamlit-in-Snowflake app surfacing the benchmark data dictionary, specialty reference, and semantic-view documentation to internal users — a persona-specific serving surface.</div>
+    <div class="meta">
+      Streamlit-in-Snowflake · internal serving surface
+    </div>
+  </div>
+</div>
+<p class="h2sub" style="margin-top:1rem">
+  <b style="color:var(--heading)">AI functions in the toolbox:</b>
+  <code>AI_COMPLETE</code> <code>AI_EXTRACT</code> <code>AI_PARSE_DOCUMENT</code>
+  <code>AI_CLASSIFY</code> — used across discovery, extraction, and classification.
+</p>
+
+<!-- ══════════════ 2 ══════════════ -->
+<h2><span class="sec">02</span> The Knowledge Discovery Framework</h2>
+<div class="h2sub">The reusable IP — a 4-layer, 5-phase methodology for turning <em>any</em> unstructured document corpus into a queryable knowledge base. Developed and validated on the prospectus corpus; designed to be applied to the next document type at lower cost.</div>
+
+<h3>Four layers — document → decision</h3>
+<div class="layers">
+  <div class="lyr"><div class="num">1</div><div><div class="t">Document Ingestion &amp; Classification</div><div class="d">Stage, deduplicate by content, classify document type, identify the producer/template (broker ID), route by size tier.</div></div></div>
+  <div class="lyr"><div class="num">2</div><div><div class="t">Knowledge Structuring &amp; Representation</div><div class="d">AI discovery sweep → taxonomy → coverage mapping → controlled vocabulary (raw terms → canonical fields) → extraction schema with validation rules.</div></div></div>
+  <div class="lyr"><div class="num">3</div><div><div class="t">Data Architecture for Serving</div><div class="d">Bronze/Silver/Gold tables, structured extraction into Silver, comparison views in Gold, chunk + embed for search, Cortex Search service.</div></div></div>
+  <div class="lyr"><div class="num">4</div><div><div class="t">Serving &amp; Action</div><div class="d">Semantic model for Cortex Analyst (text-to-SQL), wire Search + Analyst into a Cortex Agent, persona-specific interfaces tied to business questions.</div></div></div>
+</div>
+
+<h3>Five phases — the repeatable process</h3>
+<div class="phases">
+  <div class="ph"><div class="pn">PHASE 1</div><div class="pt">Single-doc deep dive</div><div class="pd">Zero-shot discovery on one representative doc. ~$0.10.</div></div>
+  <div class="ph"><div class="pn">PHASE 2</div><div class="pt">Model comparison</div><div class="pd">Same doc, 2+ models (Claude vs Gemini) — quality × cost. ~$0.20.</div></div>
+  <div class="ph"><div class="pn">PHASE 3</div><div class="pt">Corpus sweep</div><div class="pd">Batch AI_COMPLETE across all docs, error-resilient. ~$0.04/doc.</div></div>
+  <div class="ph"><div class="pn">PHASE 4</div><div class="pt">Dedup &amp; validate</div><div class="pd">Content dedup, coverage %, build controlled vocabulary. SQL only.</div></div>
+  <div class="ph"><div class="pn">PHASE 5</div><div class="pt">Analysis snapshot</div><div class="pd">Constraints, normalization challenges, business-value mapping.</div></div>
+</div>
+<div class="callout">
+  <b>Core principle: discovery before extraction.</b> Let AI tell you what's in the
+  documents before designing the schema. Run zero-shot discovery, validate the
+  ontology across the corpus, <em>then</em> design the canonical schema. YAML is
+  the source of truth; HTML reports and database tables are downstream renders.
+</div>
+
+<!-- ══════════════ 3 ══════════════ -->
+<h2><span class="sec">03</span> The document knowledge base</h2>
+<div class="h2sub">The proof the framework works — a proprietary, normalized database of practice economics that no competitor has. Built for ~$25 in AI inference.</div>
+<div class="stats">
+  <div class="stat"><div class="v">99 → 67</div><div class="l">files ingested → unique after dedup (29% dupes)</div></div>
+  <div class="stat"><div class="v">61</div><div class="l">unique docs analyzed via AI_COMPLETE</div></div>
+  <div class="stat"><div class="v">12+</div><div class="l">broker firms / dialects profiled</div></div>
+  <div class="stat"><div class="v">6</div><div class="l">knowledge domains, consistent across all brokers</div></div>
+</div>
+
+<h3>The core technical challenge: normalization</h3>
+<p class="h2sub">
+  Every broker names the same metric differently — <code>asking_price</code> alone
+  has 7 variants; revenue has 20+. <b>460 raw financial term keys collapse to ~25
+  canonical concepts.</b> There's no industry standard, so normalization is handled
+  at ingestion via a dual approach: <code>AI_EXTRACT</code> against a fixed canonical
+  schema (primary), plus a controlled-vocabulary mapping table (audit trail + edge
+  cases). Knowing that four differently-named price fields all mean the same thing
+  is domain knowledge that took four phases of AI discovery to build — and it's
+  encoded in YAML, not people's heads.
+</p>
+
+<h3>What discovery surfaced</h3>
+<table>
+  <tr><th>Insight</th><th>Detail</th><th>Design implication</th></tr>
+  <tr><td><b>3 size tiers</b></td><td>83% of docs work with any model; 17% need a larger-context model or splitting (page/token limits)</td><td>Ingestion needs a size router, not one model path</td></tr>
+  <tr><td><b>Concept &gt; section extraction</b></td><td>98% have financial data but only 89% have a "Financials" section</td><td>Ask "find the asking price," never "find the Pricing section"</td></tr>
+  <tr><td><b>Uneven coverage is real</b></td><td>Universal fields 85%+, common 40–85%, sparse &lt;40%</td><td>Distinguish "not found" from "not applicable"; design products on Tier-1 fields</td></tr>
+  <tr><td><b>Dedup at ingestion</b></td><td>29% of raw files were GUID-suffixed duplicates</td><td>Content hash + file size, never filename alone</td></tr>
+  <tr><td><b>Mixed document types</b></td><td>76% prospectuses, 6% valuations, plus out-of-domain docs</td><td>Classify first, route to corpus-specific extraction</td></tr>
+</table>
+<div class="callout">
+  A model comparison (Claude vs Gemini) was captured to a results table to choose
+  the right model on quality × cost; the discovery corpus and source PDFs live in
+  a directory-enabled document stage feeding the pipeline.
+</div>
+
+<!-- ══════════════ 4 ══════════════ -->
+<h2><span class="sec">04</span> Strategy &amp; productization</h2>
+<div class="h2sub">Turning the data asset into revenue and a growth-stage investor narrative — five products, each mapped to a persona and a way it pays for itself.</div>
+<table>
+  <tr><th>Data product</th><th>Answers</th><th>For</th><th>Status</th></tr>
+  <tr><td><b>Credit Memo Auto-Populate</b></td><td>Auto-fill the credit memo from an uploaded prospectus</td><td>Underwriter</td><td>Ready to build</td></tr>
+  <tr><td><b>Practice Benchmarking Report</b></td><td>"How does my practice compare? Am I overpaying?"</td><td>Borrower, Loan Officer</td><td>Ready to build</td></tr>
+  <tr><td><b>Practice Intelligence Search</b></td><td>Plain-language search across the corpus</td><td>Loan Officer, Exec</td><td>Planned (search + agent)</td></tr>
+  <tr><td><b>Market Pulse Dashboard</b></td><td>Portfolio stats, broker deal-quality</td><td>Exec, Investor</td><td>Needs lending data</td></tr>
+  <tr><td><b>Lending Performance Predictor</b></td><td>"Default rate for practices priced above 1× revenue?"</td><td>Investor</td><td>The unlock — needs lending corpus</td></tr>
+</table>
+<p class="h2sub">
+  <b style="color:var(--heading)">The moat</b> isn't the model — it's the data only
+  the lender can assemble (prospectuses arrive through the lending workflow) plus the
+  institutional knowledge encoded around it (controlled vocabulary + broker
+  dialects). The highest-value layer — correlating practice economics with actual
+  loan outcomes — is something <em>only</em> the lender can do.
+</p>
+
+<!-- ══════════════ 5 ══════════════ -->
+<h2><span class="sec">05</span> The AI-native build model</h2>
+<div class="h2sub">How the work itself was built — a two-agent operating model that pairs a general-purpose driver with a platform specialist.</div>
+<div class="builds">
+  <div class="build" style="border-left-color:var(--purple)">
+    <div class="bh">Claude Code — the driver</div>
+    <div class="bd">General development, file editing, refactoring, orchestration, git, and all the HTML/Python/SQL tooling. Holds the guardrails and drives the reasoning.</div>
+  </div>
+  <div class="build" style="border-left-color:var(--teal)">
+    <div class="bh">Cortex Code — the platform specialist</div>
+    <div class="bd">50+ Snowflake-native skills (data-quality, lineage, cost-intelligence, agent, semantic-view, ML). Invoked by shelling out — direct subcommands when the action is known, prompted skills when reasoning is needed.</div>
+  </div>
+</div>
+<ul class="tight">
+  <li><b>Delegation is shell-out.</b> Direct subcommands for known actions (no extra LLM call); prompted invocations to let the specialist's model drive a skill.</li>
+  <li><b>Shared guardrails.</b> Both agents read one guardrails file — read-only default, prod protection, per-statement confirmation for DDL/DML.</li>
+  <li><b>Stateless bridging.</b> A handoff log carries last-action / next-action / open-questions between agents and sessions.</li>
+  <li><b>Isolation.</b> One git worktree per parallel stream so the two agents don't collide.</li>
+</ul>
+
+<!-- ══════════════ 6 ══════════════ -->
+<h2><span class="sec">06</span> Cost &amp; operations intelligence</h2>
+<div class="h2sub">Running AI in an account means watching what it costs. The work included a forensic cost analysis and reusable monitoring.</div>
+<ul class="tight">
+  <li><b>Cost analysis</b> — a 14-day forensic reconstruction of AI/Cortex usage that identified the delegation loop between the two agents as the primary cost driver (74% of peak-day CLI spend), then tuned it.</li>
+  <li><b>Reusable monitoring</b> — a set of ACCOUNT_USAGE queries plus a daily-email variant for ongoing cost visibility.</li>
+  <li><b>Team best-practices guide</b> — how to keep the AI-native workflow efficient.</li>
+  <li><b>Economics</b> — discovery + analysis ran ~$25; a complete knowledge base was projected at ~$85 in AI inference. The framework itself lowers the cost of the next corpus.</li>
+</ul>
+
+<!-- ══════════════ 7 ══════════════ -->
+<h2><span class="sec">07</span> What this demonstrates</h2>
+<div class="h2sub">Capabilities exercised end-to-end across the engagement.</div>
+<table>
+  <tr><th>Capability</th><th>Evidence</th></tr>
+  <tr><td><b>Applied GenAI in a live account</b></td><td>Cortex Agent + Search + Analyst + Streamlit, all deployed and callable</td></tr>
+  <tr><td><b>Unstructured → structured pipelines</b></td><td>67-doc corpus through discovery → normalization → extraction schema</td></tr>
+  <tr><td><b>Reusable methodology / IP</b></td><td>4-layer, 5-phase Knowledge Discovery Framework, codified in YAML</td></tr>
+  <tr><td><b>Data-product strategy</b></td><td>5 products mapped to 5 personas + a defensibility/moat narrative</td></tr>
+  <tr><td><b>Multi-agent orchestration</b></td><td>Two-agent AI-native operating model with shared guardrails</td></tr>
+  <tr><td><b>AI cost governance</b></td><td>Forensic cost analysis + reusable monitoring + best-practices guide</td></tr>
+  <tr><td><b>Model evaluation</b></td><td>Claude vs Gemini A/B comparison captured to a results table</td></tr>
+</table>
+
+<!-- ══════════════ 8 ══════════════ -->
+<h2><span class="sec">08</span> Stack &amp; techniques</h2>
+<div class="h2sub">The tools and methods this case study drew on.</div>
+<div class="chips">
+  <span>Snowflake</span><span>Cortex Agents</span><span>Cortex Search</span>
+  <span>Cortex Analyst (semantic views)</span><span>AI_COMPLETE / AI_EXTRACT / AI_CLASSIFY</span>
+  <span>Streamlit-in-Snowflake</span><span>Medallion (Bronze/Silver/Gold)</span>
+  <span>Controlled vocabulary / ontology</span><span>Claude Code</span><span>Cortex Code</span>
+  <span>Multi-agent orchestration</span><span>Python</span><span>SQL</span><span>YAML-as-source-of-truth</span>
+</div>
+
+<footer>
+  <div class="name">John Y Miller</div>
+  <div class="tag">AI Systems Builder · Data Architecture · Founder Conversations</div>
+  <div class="links">
+    <a href="https://www.linkedin.com/in/jymiller">LinkedIn</a> · <a href="../index.html">Website</a> · <a href="mailto:john@milbird.com">Email</a>
+  </div>
+  <div class="fine">
+    Case study from a 2026 data &amp; AI engagement with a specialty
+    healthcare-practice lender. Client identity and internal object names have been
+    anonymized; metrics are point-in-time from the project's own snapshots.
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
