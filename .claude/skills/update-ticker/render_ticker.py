@@ -17,9 +17,11 @@ import sys
 import urllib.request
 from datetime import datetime, timedelta
 from pathlib import Path
+from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 FEED_URL = "https://usergroups.snowflake.com/bay-area/"
+FEED_HOST = "usergroups.snowflake.com"
 PACIFIC = ZoneInfo("America/Los_Angeles")
 REPO_ROOT = Path(__file__).resolve().parents[3]
 INDEX = REPO_ROOT / "index.html"
@@ -42,7 +44,20 @@ def load_html(arg):
 
 
 def clean(title):
-    return title.split(" | ")[0].split(" @ ")[0].strip()
+    # Collapse all whitespace: feed text must not forge lines in stdout or break the HTML.
+    return " ".join(title.split(" | ")[0].split(" @ ")[0].split())
+
+
+def safe_url(url):
+    # The feed is third-party and its url lands in a published href. html.escape() would
+    # not stop a javascript:/data: scheme, so allow only https on the feed's own host.
+    try:
+        parsed = urlparse(url or "")
+    except ValueError:
+        return FEED_URL
+    if parsed.scheme == "https" and parsed.hostname == FEED_HOST:
+        return url
+    return FEED_URL
 
 
 def fmt(dt):
@@ -60,7 +75,7 @@ def parse_events(page):
         for e in pd.get(bucket, {}).get("results", []):
             out.append({
                 "title": clean(e.get("title", "")),
-                "url": e.get("url") or FEED_URL,
+                "url": safe_url(e.get("url")),
                 "dt": datetime.fromisoformat(e["start_date"].replace("Z", "+00:00")),
             })
         return out

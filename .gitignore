@@ -1,2 +1,14 @@
 venv/
 .DS_Store
+__pycache__/
+*.pyc
+
+# Claude Code local artifacts. These are also covered by a machine-global ignore,
+# but that does NOT travel to a fork, a template, CI, or another contributor —
+# so keep the rules here, in the repo.
+.claude/settings.local.json
+.claude/worktrees/
+
+# Never let credentials in.
+.env
+.env.*

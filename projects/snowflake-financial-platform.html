@@ -97,30 +97,6 @@
     margin: 1.9rem 0 0.7rem;
   }
 
-  /* Status badges */
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.15em;
-    height: 1.15em;
-    border-radius: 50%;
-    font-size: 0.72em;
-    font-weight: 700;
-  }
-  .badge.done { background: rgba(74, 222, 128, 0.2); color: var(--green); border: 1px solid var(--green); }
-  .badge.sprint { background: rgba(251, 191, 36, 0.2); color: var(--amber); border: 1px solid var(--amber); }
-  .badge.later { background: rgba(148, 163, 184, 0.15); color: var(--muted); border: 1px solid var(--muted); }
-  .legend {
-    display: flex;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    font-size: 0.74rem;
-    color: var(--muted);
-    margin-top: 0.7rem;
-  }
-  .legend .k { display: inline-flex; align-items: center; gap: 0.35rem; }
-
   /* Architecture diagram */
   .arch {
     background: rgba(41, 181, 232, 0.04);
@@ -366,8 +342,8 @@
       <div class="sf-zone">
         <div class="zone-label">Snowflake — two accounts</div>
         <div class="sf-accts">
-          <span class="acct nonprod"><span class="badge done">✓</span> NONPROD <span class="meta">· DEV + QA</span></span>
-          <span class="acct prod"><span class="badge sprint">◷</span> PROD <span class="meta">· same architecture · sprint</span></span>
+          <span class="acct nonprod">NONPROD <span class="meta">· DEV + QA</span></span>
+          <span class="acct prod">PROD <span class="meta">· same architecture</span></span>
         </div>
         <div class="medallion">
           <div class="ml ml-bronze">
@@ -403,10 +379,6 @@
         <div class="box"><div class="t">VNet + PrivateLink</div><div class="d">Private connectivity over the corporate network</div></div>
       </div>
 
-      <div class="legend">
-        <span class="k"><span class="badge done">✓</span> Established</span>
-        <span class="k"><span class="badge sprint">◷</span> Production stand-up — this sprint</span>
-      </div>
     </div>
 
     <h2>Outcomes</h2>
@@ -460,44 +432,42 @@
       <div class="did-layer did-l1">
         <div class="lt">L1 · Network</div>
         <div class="items">
-          <span><span class="badge done">✓</span> PrivateLink connectivity</span>
-          <span><span class="badge sprint">◷</span> Network policy / IP allowlist</span>
+          <span>PrivateLink connectivity</span>
+          <span>Network policy / IP allowlist</span>
         </div>
       </div>
       <div class="did-layer did-l2">
         <div class="lt">L2 · Identity &amp; Authentication</div>
         <div class="items">
-          <span><span class="badge done">✓</span> Azure AD SSO (SAML2)</span>
-          <span><span class="badge done">✓</span> SCIM provisioning</span>
-          <span><span class="badge done">✓</span> Key-pair (JWT) auth</span>
-          <span><span class="badge sprint">◷</span> MFA enrollment</span>
-          <span><span class="badge done">✓</span> Break-glass account</span>
+          <span>Azure AD SSO (SAML2)</span>
+          <span>SCIM provisioning</span>
+          <span>Key-pair (JWT) auth</span>
+          <span>MFA enrollment</span>
+          <span>Break-glass account</span>
         </div>
       </div>
       <div class="did-layer did-l3">
         <div class="lt">L3 · Data Protection</div>
         <div class="items">
-          <span><span class="badge later">○</span> Masking policies</span>
-          <span><span class="badge later">○</span> Row-access policies</span>
-          <span><span class="badge later">○</span> Data classification tags</span>
+          <span>Masking policies</span>
+          <span>Row-access policies</span>
+          <span>Data classification tags</span>
         </div>
       </div>
       <div class="did-layer did-l4">
         <div class="lt">L4 · Monitoring &amp; Governance</div>
         <div class="items">
-          <span><span class="badge done">✓</span> Cortex usage monitoring</span>
-          <span><span class="badge sprint">◷</span> Resource monitors</span>
-          <span><span class="badge done">✓</span> Audit queries</span>
-          <span><span class="badge done">✓</span> Data retention policy</span>
+          <span>Cortex usage monitoring</span>
+          <span>Resource monitors</span>
+          <span>Audit queries</span>
+          <span>Data retention policy</span>
         </div>
       </div>
       <div class="did-core">Data</div>
-      <div class="legend">
-        <span class="k"><span class="badge done">✓</span> Established</span>
-        <span class="k"><span class="badge sprint">◷</span> Production stand-up</span>
-        <span class="k"><span class="badge later">○</span> Phase 2 — follow-on</span>
-      </div>
     </div>
+    <p class="note">
+      The four-layer model as designed. Per-control implementation status is the client's, not mine to publish.
+    </p>
 
     <h2>The Stack</h2>
     <div class="stack">
