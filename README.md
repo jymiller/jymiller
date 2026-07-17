@@ -26,6 +26,8 @@ If you're considering my help with Snowflake, I've led Snowflake Strategy and Im
 
 I've just taken over as organizer — bringing Bay Area data practitioners together to share what's working with Snowflake, data engineering, and AI. Come say hi at the next meetup.
 
+**VP of Programs and board member at DAMA Los Angeles** — where I host [**DAMA LA Presents**](https://www.youtube.com/@DAMALosAngeles), the chapter's podcast.
+
 ### What I’m good at with Snowflake
 - Coaching and mentoring architects, engineers, analysts and designers
 - Cortex Code, Agents, SubAgents, Skills, Memory, Harnesses
@@ -34,8 +36,11 @@ I've just taken over as organizer — bringing Bay Area data practitioners toget
 - Private Link, Private Endpoints, Azure, AWS and Business Resumption Planning
 - A little GCP
 
-### 🛠 Recent Projects:
-**⭐ Featured —** [A Governed, AI-Native Snowflake Platform for a Financial-Services Company](https://jymiller.github.io/jymiller/projects/snowflake-financial-platform.html) — 13-week engagement: governed medallion foundation, Azure AD SSO/SCIM, Snowflake-native AI in production (Cortex Agents, Search & Analyst), and a 40-work-area assessment the client's team now runs themselves.
+### 🛠 Recent Gigs
+
+**❄ [A Secure, Governed Snowflake Platform for a Bank — Dev to Prod](https://jymiller.github.io/jymiller/projects/snowflake-financial-platform.html)** — 13-week engagement: a secure environment carried from dev and QA toward production — enterprise identity (Azure AD SSO/SCIM), two-layer RBAC across 20 roles and 3,700+ grants, four-layer defense in depth, a medallion foundation with dbt, and repeatable build scripts so prod comes up from the same source as non-prod.
+
+**🤖 [Turning Lending Documents into an AI-Powered Data Asset](https://jymiller.github.io/jymiller/projects/ai-lending-case-study.html)** — Snowflake-native AI (Cortex Agents, Search, Analyst) turning a healthcare-practice lender's unstructured documents into queryable intelligence, plus a reusable knowledge-discovery framework so the next document type follows the same path.
 
 - Global Data Strategy implementation of Medallion Architecture, DevOps processes, and Data Contracts in Snowflake
 - Helping government agencies modernize their data platforms and pipelines
@@ -50,7 +55,7 @@ A working lab of Snowflake patterns I use and teach — see the [`/scripts`](./s
 
 ### 📫 Let’s Connect
 - 💼 [LinkedIn](https://www.linkedin.com/in/jymiller)
-- 🎙️ [The Agentic Mesh Podcast](https://www.youtube.com/@TheAgenticMeshPodcast) — co-host
+- 🎙️ [DAMA LA Presents](https://www.youtube.com/@DAMALosAngeles) — host
 - 🏢 [Milbird](https://milbird.com/) — how I deliver services
 - ✉️ Reach me at john@milbird.com
 - 🌐 [jymiller.github.io/jymiller](https://jymiller.github.io/jymiller/)
