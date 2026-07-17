@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>John Y Miller — Snowflake &amp; AI</title>
+<title>John Y Miller — AI &amp; Snowflake Security</title>
 <style>
   :root {
     --snow-blue: #29b5e8;
     --snow-light: #7fd8f0;
+    --violet: #c084fc;
+    --violet-light: #ddb6ff;
     --navy: #0a1929;
     --navy-2: #11283f;
     --text: #eaf4f9;
@@ -25,190 +27,289 @@
     display: flex;
     align-items: safe center;
     justify-content: safe center;
-    padding: 4vh 6vw;
+    padding: 3vh 4vw;
     line-height: 1.5;
   }
-  .slide {
-    width: 100%;
-    max-width: 1120px;
-  }
-  /* Hero: photo | identity | QR codes (top-right, beside the name) */
+  .slide { width: 100%; max-width: 1240px; }
+
+  /* ── HERO: identity + the line + the QR codes ────────────────────── */
   .hero {
     display: flex;
     align-items: center;
-    gap: clamp(1.3rem, 3vw, 2.4rem);
+    gap: clamp(1rem, 2.4vw, 2rem);
+    margin-bottom: clamp(1.1rem, 2.2vh, 1.7rem);
   }
   .avatar {
-    width: clamp(108px, 13vw, 148px);
-    height: clamp(108px, 13vw, 148px);
+    width: clamp(76px, 8vw, 104px);
+    height: clamp(76px, 8vw, 104px);
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
     border: 3px solid var(--snow-blue);
-    box-shadow: 0 0 0 6px rgba(41, 181, 232, 0.12), 0 8px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 5px rgba(41, 181, 232, 0.12), 0 8px 30px rgba(0, 0, 0, 0.4);
   }
   .hero-text { flex: 1; min-width: 0; }
   h1 {
     font-family: "Arial Narrow", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-stretch: condensed;
-    font-size: clamp(2.5rem, 6.5vw, 4.3rem);
+    font-size: clamp(2rem, 4.4vw, 3.3rem);
     font-weight: 800;
-    letter-spacing: 0;
-    line-height: 1.04;
+    line-height: 1.02;
   }
-  h1 .accent { color: var(--snow-blue); }
   .tagline {
-    font-size: clamp(1.02rem, 2.1vw, 1.4rem);
-    color: var(--text);
-    font-weight: 500;
-    margin-top: 0.7rem;
+    font-size: clamp(0.9rem, 1.55vw, 1.15rem);
+    font-weight: 600;
+    color: var(--snow-light);
+    margin-top: 0.35rem;
+    letter-spacing: 0.01em;
   }
-  /* QR codes: featured top-right in the hero, sized to scan from the back of the room */
+  .punch {
+    font-size: clamp(0.85rem, 1.4vw, 1.08rem);
+    color: var(--text);
+    margin-top: 0.4rem;
+    font-style: italic;
+    opacity: 0.9;
+  }
   .qr-row {
     flex-shrink: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.85rem;
     justify-content: center;
   }
   .qr {
     display: block;
     background: #fff;
-    padding: 0.6rem 0.6rem 0.4rem;
+    padding: 0.55rem 0.55rem 0.35rem;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     text-decoration: none;
   }
-  .qr img { display: block; width: 158px; height: 158px; }
+  .qr img { display: block; width: 148px; height: 148px; }
   .qr .cap {
-    margin-top: 0.35rem;
+    margin-top: 0.3rem;
     text-align: center;
-    font-size: 0.78rem;
-    font-weight: 700;
+    font-size: 0.76rem;
+    font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--navy);
   }
-  .featured {
-    display: block;
-    margin-top: 1.5rem;
-    padding: 1.1rem 1.4rem;
-    background: var(--card);
-    border: 1px solid var(--card-border);
-    border-left: 4px solid var(--snow-light);
-    border-radius: 10px;
+
+  /* ── THE BILLBOARD: two tiles that own the page ──────────────────── */
+  .billboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(0.9rem, 1.6vw, 1.4rem);
+  }
+  .tile {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.1rem, 2vw, 1.9rem) clamp(1.1rem, 2vw, 1.8rem) clamp(1rem, 1.6vw, 1.4rem);
+    border-radius: 18px;
     text-decoration: none;
-    transition: border-color 0.15s ease, background 0.15s ease;
+    border: 1px solid var(--tile-border);
+    border-top: 6px solid var(--tile-accent);
+    background:
+      linear-gradient(160deg, var(--tile-wash) 0%, rgba(10, 25, 41, 0.35) 62%),
+      rgba(10, 25, 41, 0.5);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.42);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
   }
-  .featured:hover {
-    border-color: var(--snow-blue);
-    border-left-color: var(--snow-blue);
-    background: rgba(41, 181, 232, 0.11);
+  .tile:hover {
+    transform: translateY(-4px);
+    border-color: var(--tile-accent);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
   }
-  .featured-label {
-    color: var(--snow-blue);
-    font-size: clamp(0.72rem, 1.2vw, 0.85rem);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 0.35rem;
+  .tile.sec { --tile-accent: var(--snow-blue); --tile-soft: var(--snow-light); --tile-border: rgba(41, 181, 232, 0.3); --tile-wash: rgba(41, 181, 232, 0.16); }
+  .tile.ai  { --tile-accent: var(--violet);   --tile-soft: var(--violet-light); --tile-border: rgba(192, 132, 252, 0.32); --tile-wash: rgba(192, 132, 252, 0.16); }
+
+  .flake {
+    position: absolute;
+    top: -34px;
+    right: -30px;
+    width: clamp(140px, 15vw, 210px);
+    height: auto;
+    opacity: 0.14;
+    color: var(--tile-accent);
+    pointer-events: none;
   }
-  .featured-title {
+
+  .badge {
+    position: relative;
+    align-self: flex-start;
+    font-family: "Arial Narrow", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-stretch: condensed;
+    font-size: clamp(1.8rem, 3.6vw, 3rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    color: var(--navy);
+    background: var(--tile-accent);
+    padding: 0.3em 0.55em 0.34em;
+    border-radius: 8px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  }
+  .tile-head {
+    position: relative;
     color: var(--text);
-    font-size: clamp(1rem, 1.9vw, 1.25rem);
-    font-weight: 700;
-    line-height: 1.3;
+    font-size: clamp(1.15rem, 2.05vw, 1.72rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-top: 0.85rem;
   }
-  .featured-desc {
+  .tile-meta {
+    position: relative;
     color: var(--muted);
-    font-size: clamp(0.85rem, 1.4vw, 1rem);
-    margin-top: 0.4rem;
-  }
-  .featured-desc p { margin-bottom: 0.55rem; }
-  .featured-desc p:last-child { margin-bottom: 0; }
-  .featured-punchline {
-    margin-top: 0.7rem;
-    font-style: italic;
-    color: var(--snow-light);
-    font-size: clamp(0.88rem, 1.45vw, 1.05rem);
-    line-height: 1.5;
-  }
-  .featured-more {
-    color: var(--snow-light);
-    font-size: clamp(0.82rem, 1.3vw, 0.95rem);
+    font-size: clamp(0.76rem, 1.15vw, 0.9rem);
     font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     margin-top: 0.5rem;
   }
-  /* The positioning block is a statement, not a link — neutralize hover */
-  .featured.statement { cursor: default; }
-  .featured.statement:hover {
-    border-color: var(--card-border);
-    border-left-color: var(--snow-light);
-    background: var(--card);
-  }
-  /* Recent Gigs — one project card per engagement */
-  .section-label {
-    color: var(--snow-blue);
-    font-size: clamp(0.72rem, 1.2vw, 0.85rem);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin: 1.6rem 0 0.7rem;
-  }
-  .gigs-row {
+  .stats {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: clamp(0.9rem, 1.8vw, 1.3rem);
   }
-  .gig {
+  .stat {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--tile-border);
+    border-radius: 11px;
+    padding: 0.7rem 0.5rem 0.6rem;
+    text-align: center;
+    min-width: 0;
+  }
+  .stat .n {
     display: block;
-    padding: 1.1rem 1.3rem;
+    font-family: "Arial Narrow", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-stretch: condensed;
+    font-size: clamp(1.55rem, 3.1vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--tile-soft);
+    letter-spacing: -0.01em;
+  }
+  .stat .l {
+    display: block;
+    font-size: clamp(0.63rem, 0.9vw, 0.76rem);
+    color: var(--muted);
+    margin-top: 0.35rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+  .tile-more {
+    position: relative;
+    color: var(--tile-soft);
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    font-weight: 700;
+    margin-top: 0.9rem;
+  }
+  .tile:hover .tile-more { text-decoration: underline; }
+
+  /* ── THE RANGE: one slim line, expands for anyone who wants depth ── */
+  .range { margin-top: clamp(0.9rem, 2vh, 1.4rem); }
+  .range summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.55rem 1rem;
     background: var(--card);
     border: 1px solid var(--card-border);
-    border-left: 4px solid var(--snow-light);
-    border-radius: 10px;
-    text-decoration: none;
+    border-radius: 999px;
     transition: border-color 0.15s ease, background 0.15s ease;
   }
-  .gig:hover {
-    border-color: var(--snow-blue);
-    border-left-color: var(--snow-blue);
-    background: rgba(41, 181, 232, 0.11);
+  .range summary::-webkit-details-marker { display: none; }
+  .range summary::marker { content: ""; }
+  .range summary:hover { border-color: var(--snow-blue); background: rgba(41, 181, 232, 0.11); }
+  .range summary:focus-visible { outline: 2px solid var(--snow-blue); outline-offset: 3px; }
+  .range-label {
+    color: var(--snow-blue);
+    font-size: clamp(0.66rem, 0.95vw, 0.76rem);
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
-  .gig-title { color: var(--text); font-size: clamp(0.98rem, 1.7vw, 1.15rem); font-weight: 700; line-height: 1.3; }
-  .gig-desc { color: var(--muted); font-size: clamp(0.82rem, 1.35vw, 0.95rem); margin-top: 0.45rem; }
-  .gig-more { color: var(--snow-light); font-size: clamp(0.8rem, 1.3vw, 0.92rem); font-weight: 600; margin-top: 0.6rem; }
-  .grid {
-    margin-top: 1.5rem;
+  .range-teaser {
+    color: var(--muted);
+    font-size: clamp(0.7rem, 1.05vw, 0.84rem);
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .range-cue {
+    color: var(--snow-light);
+    font-size: clamp(0.66rem, 0.95vw, 0.76rem);
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .range-chev {
+    color: var(--snow-light);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    font-size: 0.7rem;
+  }
+  .range[open] .range-chev { transform: rotate(180deg); }
+  .range[open] .range-cue { visibility: hidden; }
+  .range-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.7rem;
+    margin-top: 0.7rem;
   }
-  .card {
+  .rcard {
     background: var(--card);
     border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 1.05rem 1.2rem;
+    border-radius: 12px;
+    border-left: 3px solid var(--rc, var(--snow-blue));
+    padding: 0.85rem 1.05rem;
   }
-  .card h3 {
-    color: var(--snow-blue);
-    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-    margin-bottom: 0.5rem;
+  .rcard h3 {
+    color: var(--rc, var(--snow-blue));
+    font-size: clamp(0.85rem, 1.3vw, 1rem);
+    margin-bottom: 0.4rem;
   }
-  .card ul { list-style: none; }
-  .card li {
-    font-size: clamp(0.85rem, 1.4vw, 1rem);
+  .rcard.is-ai { --rc: var(--violet); }
+  .rcard ul { list-style: none; }
+  .rcard li {
+    font-size: clamp(0.76rem, 1.1vw, 0.9rem);
     color: var(--text);
-    padding: 0.16rem 0;
+    padding: 0.14rem 0 0.14rem 1.1rem;
+    position: relative;
   }
-  .card li::before { content: "❄  "; color: var(--snow-blue); }
+  .rcard li::before {
+    content: "❄";
+    position: absolute;
+    left: 0;
+    top: 0.2rem;
+    font-size: 0.7em;
+    color: var(--rc, var(--snow-blue));
+  }
+  .rcard a { color: var(--snow-light); text-decoration: none; border-bottom: 1px solid rgba(41,181,232,0.4); }
+  .rcard a:hover { color: var(--snow-blue); }
+
   .links {
-    margin-top: 1.5rem;
+    margin-top: 0.85rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem 1.4rem;
+    gap: 0.4rem 1.15rem;
     align-items: center;
-    font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+    font-size: clamp(0.78rem, 1.15vw, 0.95rem);
   }
   .links a {
     color: var(--text);
@@ -219,13 +320,15 @@
   }
   .links a:hover { color: var(--snow-blue); }
   .links .label { color: var(--muted); }
+
   /* Scrolling Snowflake newsreel: solid Snowflake-blue bar, white text */
   .ticker {
     display: block;
-    margin-top: 1.5rem;
+    margin-top: 1.1rem;
     padding: 0.8rem 0;
     background: var(--snow-blue);
     overflow: hidden;
+    border-radius: 8px;
   }
   .ticker-inner {
     display: inline-block;
@@ -247,16 +350,26 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .ticker-inner { animation: none; padding-left: 0; white-space: normal; }
+    .tile, .range-chev { transition: none; }
+    .tile:hover { transform: none; }
+  }
+
+  @media (max-width: 900px) {
+    .billboard { grid-template-columns: 1fr; }
+    .range-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 760px) {
-    body { padding: 3.5vh 5vw; }
-    .hero { flex-direction: column; text-align: center; gap: 1.1rem; }
+    body { padding: 3vh 5vw; }
+    .hero { flex-direction: column; text-align: center; gap: 1rem; }
     .hero-text { flex: none; }
     .qr-row { width: 100%; }
-    .qr img { width: 144px; height: 144px; }
-    .grid { grid-template-columns: 1fr; }
-    .gigs-row { grid-template-columns: 1fr; }
+    .qr img { width: 142px; height: 142px; }
+    .badge { align-self: center; }
+    .tile { align-items: center; text-align: center; }
+    .tile-head, .tile-meta, .tile-more { text-align: center; }
+    .stats { width: 100%; }
     .links { justify-content: center; text-align: center; }
+    .range-teaser { display: none; }
   }
 </style>
 </head>
@@ -267,6 +380,7 @@
       <div class="hero-text">
         <h1>John Y Miller</h1>
         <p class="tagline">AI&nbsp;Systems&nbsp;Builder&nbsp;· Data&nbsp;Architect&nbsp;· Founder&nbsp;Conversations</p>
+        <p class="punch">I build it, then I host the room where it gets argued about.</p>
       </div>
       <div class="qr-row">
         <a class="qr" href="https://jymiller.github.io/jymiller/">
@@ -280,67 +394,112 @@
       </div>
     </div>
 
-    <div class="featured statement">
-      <div class="featured-label">❄ The Work</div>
-      <div class="featured-title">I build AI systems and host conversations with the founders building them.</div>
-      <div class="featured-desc">
-        <p>My work sits at the intersection of enterprise data architecture, production AI, and founder-led innovation. I design and build governed Snowflake and Azure platforms, medallion architectures, semantic layers, knowledge graphs, intelligence agents, and AI-assisted delivery workflows.</p>
-        <p>I also host the other side of that work: founder conversations, panels, speaking engagements, and advisory discussions with people building the next generation of AI companies.</p>
-      </div>
-      <div class="featured-punchline">
-        The building keeps the conversations grounded.<br>
-        The conversations keep the building current.
-      </div>
+    <div class="billboard">
+      <a class="tile sec" href="projects/snowflake-financial-platform.html">
+        <svg class="flake" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+          <g transform="translate(50 50)">
+            <g>
+              <path d="M0 -42 V42" />
+              <path d="M0 -34 l-8 -9 M0 -34 l8 -9 M0 -14 l-7 -8 M0 -14 l7 -8" />
+              <path d="M0 34 l-8 9 M0 34 l8 9 M0 14 l-7 8 M0 14 l7 8" />
+            </g>
+            <g transform="rotate(60)">
+              <path d="M0 -42 V42" />
+              <path d="M0 -34 l-8 -9 M0 -34 l8 -9 M0 -14 l-7 -8 M0 -14 l7 -8" />
+              <path d="M0 34 l-8 9 M0 34 l8 9 M0 14 l-7 8 M0 14 l7 8" />
+            </g>
+            <g transform="rotate(120)">
+              <path d="M0 -42 V42" />
+              <path d="M0 -34 l-8 -9 M0 -34 l8 -9 M0 -14 l-7 -8 M0 -14 l7 -8" />
+              <path d="M0 34 l-8 9 M0 34 l8 9 M0 14 l-7 8 M0 14 l7 8" />
+            </g>
+          </g>
+        </svg>
+        <div class="badge">SECURITY</div>
+        <div class="tile-head">A bank&rsquo;s Snowflake platform, dev to prod</div>
+        <div class="tile-meta">13-week build · RBAC · Azure AD SSO · PrivateLink</div>
+        <div class="stats">
+          <div class="stat"><span class="n">3,700+</span><span class="l">Privilege grants</span></div>
+          <div class="stat"><span class="n">20</span><span class="l">Custom RBAC roles</span></div>
+          <div class="stat"><span class="n">4</span><span class="l">Layers of defense</span></div>
+        </div>
+        <div class="tile-more">See the build →</div>
+      </a>
+
+      <a class="tile ai" href="projects/ai-lending-case-study.html">
+        <svg class="flake" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+          <g transform="translate(50 50)">
+            <g>
+              <path d="M0 -42 V42" />
+              <path d="M0 -34 l-8 -9 M0 -34 l8 -9 M0 -14 l-7 -8 M0 -14 l7 -8" />
+              <path d="M0 34 l-8 9 M0 34 l8 9 M0 14 l-7 8 M0 14 l7 8" />
+            </g>
+            <g transform="rotate(60)">
+              <path d="M0 -42 V42" />
+              <path d="M0 -34 l-8 -9 M0 -34 l8 -9 M0 -14 l-7 -8 M0 -14 l7 -8" />
+              <path d="M0 34 l-8 9 M0 34 l8 9 M0 14 l-7 8 M0 14 l7 8" />
+            </g>
+            <g transform="rotate(120)">
+              <path d="M0 -42 V42" />
+              <path d="M0 -34 l-8 -9 M0 -34 l8 -9 M0 -14 l-7 -8 M0 -14 l7 -8" />
+              <path d="M0 34 l-8 9 M0 34 l8 9 M0 14 l-7 8 M0 14 l7 8" />
+            </g>
+          </g>
+        </svg>
+        <div class="badge">AI</div>
+        <div class="tile-head">Lending documents into an AI data asset</div>
+        <div class="tile-meta">Cortex Agent · Cortex Search · Semantic views · Streamlit</div>
+        <div class="stats">
+          <div class="stat"><span class="n">4</span><span class="l">AI apps running</span></div>
+          <div class="stat"><span class="n">67</span><span class="l">Docs through the pipeline</span></div>
+          <div class="stat"><span class="n">460→25</span><span class="l">Terms normalized</span></div>
+        </div>
+        <div class="tile-more">Read the case study →</div>
+      </a>
     </div>
 
-    <div class="section-label">❄ Recent Gigs</div>
-    <div class="gigs-row">
-      <a class="gig" href="projects/snowflake-financial-platform.html">
-        <div class="gig-title">Secure Banking Data Platform — Dev to Prod</div>
-        <div class="gig-desc">A governed, defense-in-depth Snowflake environment for a commercial bank: enterprise identity, two-layer RBAC, a medallion foundation, and repeatable dev → prod provisioning.</div>
-        <div class="gig-more">View the build →</div>
-      </a>
-      <a class="gig" href="projects/ai-lending-case-study.html">
-        <div class="gig-title">Lending Documents → an AI-Powered Data Asset</div>
-        <div class="gig-desc">Snowflake-native AI — Cortex Agents, Search, and Analyst — that turns a healthcare-practice lender's documents into queryable intelligence, plus a reusable framework.</div>
-        <div class="gig-more">Read the case study →</div>
-      </a>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>AI-Native &amp; Agentic</h3>
-        <ul>
-          <li>Building harnesses: Skills, SubAgents, Memory</li>
-          <li>Claude Code, OpenAI Codex, Cortex Code</li>
-          <li>Knowledge management &amp; parallel workers</li>
-        </ul>
+    <details class="range">
+      <summary>
+        <span class="range-label">❄ The Range</span>
+        <span class="range-teaser">Snowflake platform depth · AI-native &amp; agentic · Governance &amp; access · The rooms I run</span>
+        <span class="range-cue">More</span>
+        <span class="range-chev">▾</span>
+      </summary>
+      <div class="range-grid">
+        <div class="rcard is-ai">
+          <h3>AI-Native &amp; Agentic</h3>
+          <ul>
+            <li>Building harnesses: Skills, SubAgents, Memory</li>
+            <li>Claude Code · OpenAI Codex · Cortex Code</li>
+            <li>Knowledge management &amp; parallel workers</li>
+          </ul>
+        </div>
+        <div class="rcard">
+          <h3>Snowflake Platform Depth</h3>
+          <ul>
+            <li>SQL, Tasks, Streams, Dynamic Tables, Pipes, Iceberg</li>
+            <li>Medallion, dbt, semantic models, Cortex AI &amp; Agents</li>
+            <li>Turn-key EDW <a href="https://github.com/jymiller/jymiller/tree/main/scripts">provisioning scripts</a> &amp; merge patterns</li>
+          </ul>
+        </div>
+        <div class="rcard">
+          <h3>Governance &amp; Access</h3>
+          <ul>
+            <li>Two-layer <a href="https://github.com/jymiller/jymiller/tree/main/docs">RBAC design &amp; 13 principles</a></li>
+            <li>Policies, tags, masking, row-access</li>
+            <li>SSO (SAML2) + SCIM · PrivateLink · Azure · AWS</li>
+          </ul>
+        </div>
+        <div class="rcard">
+          <h3>Rooms I Run</h3>
+          <ul>
+            <li>Leader, <a href="https://usergroups.snowflake.com/bay-area/">Snowflake Bay Area Users Group</a></li>
+            <li>VP of Programs &amp; board, DAMA Los Angeles</li>
+            <li>Host, <a href="https://www.youtube.com/@DAMALosAngeles">DAMA LA Presents</a> · Founder, <a href="https://milbird.com/">Milbird</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="card">
-        <h3>Snowflake Expertise</h3>
-        <ul>
-          <li>SQL, Tasks, Streams, Dynamic Tables, Pipes, Iceberg</li>
-          <li>Security, Governance, Policies, Tags, Semantic Models</li>
-          <li>Private Link, Azure, AWS, Cortex AI &amp; Agents</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Recent Work</h3>
-        <ul>
-          <li>AI-Native Snowflake Platform for Financial Services</li>
-          <li>Medallion Architecture, DevOps &amp; Data Contracts</li>
-          <li>Government data platform modernization</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>In the Repo</h3>
-        <ul>
-          <li>Turn-key EDW provisioning scripts</li>
-          <li>RBAC design &amp; 13 principles</li>
-          <li>Merge patterns: basic → dedup → SP</li>
-        </ul>
-      </div>
-    </div>
+    </details>
 
     <div class="links">
       <span><span class="label">GitHub</span> &nbsp;<a href="https://github.com/jymiller">github.com/jymiller</a></span>
