@@ -88,6 +88,21 @@ Also defined as the `jymiller` config in `.claude/launch.json`.
 - Case-study pages are self-contained HTML with a `← Back to home` link to `../index.html`.
 - QR codes in `assets/` encode `https://jymiller.github.io/jymiller/` and the LinkedIn profile.
 
+### This repo is public — everything committed is published
+
+- Case studies show architecture and outcomes **as delivered**: no per-control implementation
+  status (done / pending / deferred), no "this sprint", no unreleased client roadmap, moat, or
+  investor framing. A client's *current* security posture is theirs, not ours to publish — for a
+  regulated client that reads as a control-weakness inventory. The capability is John's story to
+  tell; the client's posture and unshipped plans are not.
+- Private or client-specific context goes in Claude's memory
+  (`~/.claude/projects/<slug>/memory/`), which lives **outside** the repo and is never published.
+  Do not put it in a tracked file. Nothing here is a secret store.
+- Local-only artifacts must be ignored by **this repo's** `.gitignore`, not by a machine-global
+  ignore — a global ignore does not travel to a fork, a template, CI, or another contributor.
+- Third-party data (e.g. the user-group feed) that reaches published HTML must be scheme- and
+  host-validated, not just HTML-escaped: `html.escape()` will not stop a `javascript:` href.
+
 ## Any other repo — is it publishing Pages, and how?
 
 ```bash
