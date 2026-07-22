@@ -4,6 +4,8 @@
 ## AI Systems Builder | Data Architect | Founder Conversations 
 I build AI systems and host conversations with the founders building them.
 
+### 🏗️ Currently: Co-Founder of [Enid](https://enidpa.com) — investment intelligence for private credit
+Enid turns the documents behind a private-credit portfolio into a governed, continuously-monitored view of every deal — AI does the extraction, humans keep authority over every figure, and each number carries its source and confidence. It's the same governed-data playbook I bring to Snowflake work, proven by building a company on it.
 
 ### 🌐 [My one-pager → jymiller.github.io/jymiller](https://jymiller.github.io/jymiller/)
 
@@ -57,6 +59,7 @@ A working lab of Snowflake patterns I use and teach — see the [`/scripts`](./s
 - 📄 [Résumé — Snowflake Architect](https://jymiller.github.io/jymiller/resume.html) — view online or download the PDF
 - 💼 [LinkedIn](https://www.linkedin.com/in/jymiller)
 - 🎙️ [DAMA LA Presents](https://www.youtube.com/@DAMALosAngeles) — host
+- 🏗️ [Enid](https://enidpa.com) — co-founder; investment intelligence for private credit
 - 🏢 [Milbird](https://milbird.com/) — how I deliver services
 - ✉️ Reach me at john@milbird.com
 - 🌐 [jymiller.github.io/jymiller](https://jymiller.github.io/jymiller/)

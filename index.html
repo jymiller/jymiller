@@ -10,6 +10,8 @@
     --snow-light: #7fd8f0;
     --violet: #c084fc;
     --violet-light: #ddb6ff;
+    --enid: #34d399;
+    --enid-light: #6ee7b7;
     --navy: #0a1929;
     --navy-2: #11283f;
     --text: #eaf4f9;
@@ -215,6 +217,83 @@
   }
   .tile:hover .tile-more { text-decoration: underline; }
 
+  /* ── ENID: the venture — co-lead, prominent, but collapsed so Snowflake stays the pitch ── */
+  .enid { margin: clamp(0.9rem, 2vh, 1.5rem) 0 clamp(0.2rem, 0.6vh, 0.4rem); }
+  .enid summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem 0.85rem;
+    flex-wrap: wrap;
+    padding: 0.7rem 1.05rem;
+    background: linear-gradient(160deg, rgba(52, 211, 153, 0.12) 0%, rgba(10, 25, 41, 0.35) 70%);
+    border: 1px solid rgba(52, 211, 153, 0.28);
+    border-left: 4px solid var(--enid);
+    border-radius: 12px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .enid summary::-webkit-details-marker { display: none; }
+  .enid summary::marker { content: ""; }
+  .enid summary:hover { border-color: var(--enid); background: linear-gradient(160deg, rgba(52, 211, 153, 0.18) 0%, rgba(10, 25, 41, 0.35) 70%); }
+  .enid summary:focus-visible { outline: 2px solid var(--enid); outline-offset: 3px; }
+  .enid-word {
+    font-family: "Arial Narrow", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-stretch: condensed;
+    color: var(--enid-light);
+    font-weight: 800;
+    font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+  }
+  .enid-tag {
+    color: var(--enid);
+    border: 1px solid rgba(52, 211, 153, 0.45);
+    border-radius: 999px;
+    font-size: clamp(0.58rem, 0.85vw, 0.68rem);
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    flex-shrink: 0;
+  }
+  .enid-line {
+    color: var(--text);
+    font-size: clamp(0.78rem, 1.15vw, 0.95rem);
+    font-weight: 600;
+    flex: 1 1 auto;
+    min-width: 11ch;
+    opacity: 0.92;
+  }
+  .enid-cue { color: var(--enid-light); font-size: clamp(0.66rem, 0.95vw, 0.76rem); font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+  .enid-chev { color: var(--enid-light); flex-shrink: 0; transition: transform 0.2s ease; font-size: 0.7rem; }
+  .enid[open] .enid-chev { transform: rotate(180deg); }
+  .enid[open] .enid-cue { visibility: hidden; }
+  .enid-panel { margin-top: 0.7rem; padding: 0.1rem 0.35rem 0; display: grid; gap: 0.75rem; }
+  .enid-lead { color: var(--text); font-size: clamp(0.85rem, 1.2vw, 1rem); line-height: 1.55; max-width: 70ch; }
+  .enid-lead b { color: var(--enid-light); font-weight: 700; }
+  .enid-bridge {
+    color: var(--muted);
+    font-size: clamp(0.8rem, 1.1vw, 0.92rem);
+    line-height: 1.5;
+    max-width: 72ch;
+    border-left: 3px solid rgba(52, 211, 153, 0.4);
+    padding-left: 0.9rem;
+  }
+  .enid-bridge strong { color: var(--text); font-weight: 700; }
+  .enid-cta {
+    justify-self: start;
+    color: var(--navy);
+    background: var(--enid);
+    font-weight: 800;
+    font-size: clamp(0.8rem, 1.15vw, 0.92rem);
+    text-decoration: none;
+    padding: 0.5rem 1.05rem;
+    border-radius: 8px;
+    transition: background 0.15s ease, transform 0.12s ease;
+  }
+  .enid-cta:hover { background: var(--enid-light); transform: translateY(-1px); }
+
   /* ── THE RANGE: one slim line, expands for anyone who wants depth ── */
   .range { margin-top: clamp(0.9rem, 2vh, 1.4rem); }
   .range summary {
@@ -394,6 +473,21 @@
       </div>
     </div>
 
+    <details class="enid">
+      <summary>
+        <span class="enid-word">Enid</span>
+        <span class="enid-tag">Co-Founder</span>
+        <span class="enid-line">Investment intelligence for private credit.</span>
+        <span class="enid-cue">What I&rsquo;m building</span>
+        <span class="enid-chev">▾</span>
+      </summary>
+      <div class="enid-panel">
+        <p class="enid-lead">Enid turns the documents behind a private-credit portfolio — deliverables, covenants, risk, events, tracked across a deal&rsquo;s whole life — into a governed, continuously-updated view every institution can trust. <b>AI does the extraction; humans keep authority over every figure; and each number carries its source and confidence.</b></p>
+        <p class="enid-bridge"><strong>Why it belongs here:</strong> Enid runs the same governed-data playbook I bring to Snowflake engagements — medallion layering, data contracts, end-to-end lineage, and AI kept under human review. It&rsquo;s that thesis proven by building a company on it: I don&rsquo;t just architect trustworthy data platforms — I co-founded one.</p>
+        <a class="enid-cta" href="https://enidpa.com" target="_blank" rel="noopener">Learn more → enidpa.com</a>
+      </div>
+    </details>
+
     <div class="billboard">
       <a class="tile sec" href="projects/snowflake-financial-platform.html">
         <svg class="flake" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
@@ -507,6 +601,7 @@
       <span><span class="label">LinkedIn</span> &nbsp;<a href="https://www.linkedin.com/in/jymiller">in/jymiller</a></span>
       <span><span class="label">Podcast</span> &nbsp;<a href="https://www.youtube.com/@DAMALosAngeles">DAMA LA Presents</a></span>
       <span><span class="label">Email</span> &nbsp;<a href="mailto:john@milbird.com">john@milbird.com</a></span>
+      <a class="label" href="https://enidpa.com">◆ Co-Founder of Enid</a>
       <a class="label" href="https://milbird.com/">🕊️ Founder of MILBIRD</a>
     </div>
 
