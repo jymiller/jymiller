@@ -54,6 +54,7 @@ A working lab of Snowflake patterns I use and teach — see the [`/scripts`](./s
 - Merge patterns — [Basic Merge](./scripts/110_Basic_Merge.sql) → [Row Hash](./scripts/120_Merge_with_Row_Hash.sql) → [Dedup](./scripts/130_Merge_with_Dedup.sql) → [Stored Procedure](./scripts/140b_Merge_SP.sql)
 
 ### 📫 Let’s Connect
+- 📄 [Résumé — Snowflake Architect](https://jymiller.github.io/jymiller/resume.html) — view online or download the PDF
 - 💼 [LinkedIn](https://www.linkedin.com/in/jymiller)
 - 🎙️ [DAMA LA Presents](https://www.youtube.com/@DAMALosAngeles) — host
 - 🏢 [Milbird](https://milbird.com/) — how I deliver services

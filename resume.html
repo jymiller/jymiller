@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>John Y. Miller — Snowflake Architect · Resume</title>
+<meta name="description" content="John Y. Miller — Snowflake Architect. Enterprise data architecture, governance, and Cortex AI. Contract, fractional, remote or SF Bay Area onsite." />
+<style>
+  :root {
+    --snow-blue: #29b5e8;
+    --snow-light: #7fd8f0;
+    --snow-deep: #0b6fa4;
+    --navy: #0a1929;
+    --navy-2: #11283f;
+    --navy-3: #0d2136;
+    --text: #eaf4f9;
+    --muted: #8fa8bc;
+    --faint: #5f7488;
+    --card: rgba(41, 181, 232, 0.07);
+    --card-2: rgba(41, 181, 232, 0.04);
+    --card-border: rgba(41, 181, 232, 0.22);
+    --hairline: rgba(41, 181, 232, 0.16);
+    --green: #4ade80;
+    --amber: #fbbf24;
+    --teal: #2dd4bf;
+    --ink: #eaf4f9;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:
+      radial-gradient(1200px 640px at 82% -12%, #16405f 0%, rgba(17,40,63,0) 55%),
+      radial-gradient(900px 520px at -10% 8%, #123049 0%, rgba(10,25,41,0) 52%),
+      linear-gradient(180deg, var(--navy-2) 0%, var(--navy) 60%);
+    background-attachment: fixed;
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .page { max-width: 1000px; margin: 0 auto; padding: 0 5vw 6vh; }
+
+  /* ── Top bar ─────────────────────────────────────────── */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 5vw;
+    background: rgba(10, 25, 41, 0.72);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .topbar .who { font-weight: 700; letter-spacing: -0.01em; font-size: 0.98rem; }
+  .topbar .who span { color: var(--snow-blue); }
+  .topbar .actions { display: flex; gap: 0.6rem; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-size: 0.85rem; font-weight: 650;
+    padding: 0.5rem 0.95rem; border-radius: 8px;
+    text-decoration: none; white-space: nowrap;
+    border: 1px solid var(--card-border);
+    color: var(--text); background: var(--card);
+    transition: transform .12s ease, background .2s ease, border-color .2s ease;
+  }
+  .btn:hover { background: rgba(41,181,232,0.14); border-color: var(--snow-blue); transform: translateY(-1px); }
+  .btn.primary {
+    background: linear-gradient(180deg, #34c0f2, #1b93c8);
+    border-color: #56cbf5; color: #04202f; font-weight: 750;
+    box-shadow: 0 6px 18px rgba(41,181,232,0.28);
+  }
+  .btn.primary:hover { background: linear-gradient(180deg, #47cbf7, #23a0d6); }
+  .btn.ghost { color: var(--muted); background: transparent; border-color: transparent; }
+  .btn.ghost:hover { color: var(--snow-blue); background: transparent; border-color: transparent; transform: none; }
+
+  /* ── Header / hero ───────────────────────────────────── */
+  header.hero { padding: 3.4rem 0 1.4rem; }
+  .eyebrow {
+    color: var(--snow-blue); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(2.3rem, 6.2vw, 4rem);
+    font-weight: 850; letter-spacing: -0.03em; line-height: 1.02;
+    margin: 0.5rem 0 0.4rem;
+    text-wrap: balance;
+  }
+  .role-line {
+    font-size: clamp(1.02rem, 2.1vw, 1.32rem);
+    color: var(--snow-light); font-weight: 600; letter-spacing: -0.01em;
+  }
+  .tech-line { color: var(--muted); font-size: 0.98rem; margin-top: 0.25rem; letter-spacing: 0.01em; }
+
+  .engage {
+    display: inline-flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+    margin-top: 1.3rem; padding: 0.55rem 0.95rem;
+    background: rgba(74, 222, 128, 0.08);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-radius: 999px; font-size: 0.9rem; color: #d6f7e4;
+  }
+  .engage .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+    box-shadow: 0 0 0 4px rgba(74,222,128,0.18); flex: none; }
+  .engage b { color: #eafff3; font-weight: 700; }
+
+  .contacts { display: flex; flex-wrap: wrap; gap: 0.5rem 0.65rem; margin-top: 1.3rem; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.86rem; color: var(--text); text-decoration: none;
+    padding: 0.38rem 0.7rem; border-radius: 8px;
+    background: var(--card); border: 1px solid var(--card-border);
+  }
+  a.chip:hover { border-color: var(--snow-blue); color: var(--snow-light); }
+  .chip svg { width: 15px; height: 15px; opacity: 0.85; flex: none; }
+
+  /* ── Results strip ───────────────────────────────────── */
+  .results {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem;
+    margin: 2rem 0 0.5rem;
+  }
+  .result {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 12px; padding: 1rem 1.05rem;
+  }
+  .result .n {
+    font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 850; letter-spacing: -0.02em;
+    color: var(--snow-blue); line-height: 1;
+  }
+  .result .n small { font-size: 0.62em; font-weight: 750; color: var(--snow-light); }
+  .result .l { font-size: 0.82rem; color: var(--muted); margin-top: 0.45rem; line-height: 1.35; }
+
+  /* ── Section scaffolding ─────────────────────────────── */
+  section { margin-top: 2.6rem; }
+  h2 {
+    font-size: 0.8rem; font-weight: 750; color: var(--snow-blue);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding-bottom: 0.55rem; margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--hairline);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  h2::before {
+    content: ""; width: 7px; height: 7px; border-radius: 2px;
+    background: var(--snow-blue); transform: rotate(45deg); flex: none;
+  }
+
+  .summary { font-size: 1.05rem; color: #d5e6f0; max-width: 68ch; line-height: 1.62; }
+  .summary b { color: var(--text); font-weight: 700; }
+
+  /* ── Skills ──────────────────────────────────────────── */
+  .skills { display: grid; gap: 0.85rem; }
+  .skillrow { display: grid; grid-template-columns: 190px 1fr; gap: 0.9rem; align-items: start; }
+  .skillrow .cat { color: var(--snow-light); font-weight: 700; font-size: 0.9rem; padding-top: 0.25rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.8rem; color: var(--text);
+    padding: 0.28rem 0.6rem; border-radius: 7px;
+    background: var(--card-2); border: 1px solid var(--hairline);
+  }
+
+  /* ── Experience timeline ─────────────────────────────── */
+  .xp { position: relative; display: grid; gap: 1rem; }
+  .job {
+    position: relative;
+    background: linear-gradient(180deg, var(--card), var(--card-2));
+    border: 1px solid var(--card-border); border-radius: 13px;
+    padding: 1.15rem 1.3rem 1.2rem;
+  }
+  .job::before {
+    content: ""; position: absolute; left: -1px; top: 18px; bottom: 18px; width: 3px;
+    border-radius: 3px; background: linear-gradient(180deg, var(--snow-blue), transparent);
+  }
+  .job .jh { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .job .co { font-size: 1.12rem; font-weight: 800; letter-spacing: -0.01em; }
+  .job .co .sep { color: var(--snow-blue); font-weight: 600; margin: 0 0.15rem; }
+  .job .ttl { color: var(--snow-light); font-weight: 650; }
+  .job .meta { color: var(--muted); font-size: 0.84rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .job .loc { color: var(--faint); font-size: 0.82rem; margin-top: 0.15rem; }
+  .job ul { list-style: none; margin: 0.75rem 0 0; display: grid; gap: 0.5rem; }
+  .job li { position: relative; padding-left: 1.15rem; font-size: 0.95rem; color: #d3e4ef; line-height: 1.5; }
+  .job li::before {
+    content: ""; position: absolute; left: 0; top: 0.62em;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--snow-blue);
+  }
+  .job li b { color: var(--text); font-weight: 700; }
+  .earlier { color: var(--muted); font-size: 0.9rem; padding: 0.2rem 0.2rem 0; line-height: 1.55; }
+  .earlier b { color: var(--text); }
+
+  /* ── Two-column lower grid ───────────────────────────── */
+  .grid2 { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2.2rem; align-items: start; }
+  .stack { display: grid; gap: 2.4rem; }
+  .list { list-style: none; display: grid; gap: 0.55rem; }
+  .list li { position: relative; padding-left: 1.1rem; font-size: 0.94rem; color: #d3e4ef; line-height: 1.45; }
+  .list li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px;
+    border-radius: 2px; transform: rotate(45deg); background: var(--snow-blue); }
+  .list li b { color: var(--text); }
+  .list li .pno { color: var(--snow-blue); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .inline-line { color: #d3e4ef; font-size: 0.94rem; padding-left: 1.1rem; position: relative; }
+  .inline-line::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px;
+    border-radius: 2px; transform: rotate(45deg); background: var(--snow-blue); }
+  .stacklist { display: grid; gap: 0.7rem; }
+  .kv { display: grid; gap: 0.15rem; }
+  .kv .k { font-weight: 700; color: var(--text); font-size: 0.95rem; }
+  .kv .v { color: var(--muted); font-size: 0.88rem; }
+  .patent { display: grid; gap: 0.1rem; }
+  .patent .no { color: var(--snow-blue); font-weight: 700; font-size: 0.86rem; font-variant-numeric: tabular-nums; }
+  .patent .nm { color: #d3e4ef; font-size: 0.92rem; }
+
+  footer.pg {
+    margin-top: 3rem; padding-top: 1.3rem; border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem;
+    color: var(--faint); font-size: 0.82rem;
+  }
+  footer.pg a { color: var(--muted); text-decoration: none; }
+  footer.pg a:hover { color: var(--snow-blue); }
+
+  @media (max-width: 720px) {
+    .results { grid-template-columns: repeat(2, 1fr); }
+    .skillrow { grid-template-columns: 1fr; gap: 0.35rem; }
+    .grid2 { grid-template-columns: 1fr; gap: 2.4rem; }
+    .topbar .who { display: none; }
+    header.hero { padding-top: 2.4rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+
+  /* ═══════════════════════════════════════════════════════
+     PRINT  →  clean, ATS-friendly, black-on-white PDF
+     ═══════════════════════════════════════════════════════ */
+  @media print {
+    @page { size: Letter; margin: 0.4in 0.55in; }
+    html, body {
+      background: #fff !important; color: #16202b !important;
+      font-size: 9.5pt; line-height: 1.24;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .page { max-width: none; margin: 0; padding: 0; }
+    .topbar, .engage .dot, footer.pg .made { display: none !important; }
+    .no-print { display: none !important; }
+
+    header.hero { padding: 0 0 6pt; }
+    .eyebrow { color: #0b6fa4; font-size: 8pt; letter-spacing: 0.16em; }
+    h1 { font-size: 22pt; color: #0f1a24; margin: 2pt 0 1pt; letter-spacing: -0.02em; }
+    .role-line { color: #1d2b38; font-size: 11pt; }
+    .tech-line { color: #4a5b6b; font-size: 9pt; }
+    .engage {
+      background: transparent; border: 0; padding: 3pt 0 0; margin-top: 4pt;
+      color: #0b6fa4; font-size: 9pt; font-weight: 600;
+    }
+    .engage b { color: #0b3b56; }
+    .contacts { gap: 2pt 10pt; margin-top: 5pt; }
+    .chip { background: transparent; border: 0; padding: 0; color: #1d2b38; font-size: 9pt; }
+    .chip svg { display: none; }
+
+    .results {
+      grid-template-columns: repeat(4, 1fr); gap: 7pt; margin: 8pt 0 2pt;
+    }
+    .result { background: #f2f8fc; border: 1px solid #cfe6f4; border-radius: 6px; padding: 6pt 8pt; }
+    .result .n { color: #0b6fa4; font-size: 13pt; }
+    .result .n small { color: #0b6fa4; }
+    .result .l { color: #45586a; font-size: 7.6pt; margin-top: 2pt; }
+
+    section { margin-top: 8pt; }
+    h2 {
+      color: #0b6fa4; font-size: 8.4pt; letter-spacing: 0.14em;
+      border-bottom: 0.75pt solid #bcdcee; padding-bottom: 2pt; margin-bottom: 5pt;
+    }
+    h2::before { background: #0b6fa4; }
+    .summary { color: #23323f; font-size: 10pt; max-width: none; line-height: 1.4; }
+    .summary b { color: #0f1a24; }
+
+    .skills { gap: 3pt; }
+    .skillrow { grid-template-columns: 150px 1fr; gap: 8pt; }
+    .skillrow .cat { color: #0b3b56; font-size: 9pt; padding-top: 1pt; }
+    .tags { gap: 3pt; }
+    .tag { background: #f4f7fa; border: 0.5pt solid #d6e2ec; color: #23323f; font-size: 8.2pt; padding: 1pt 5pt; }
+
+    .xp { display: block; }
+    .job {
+      background: #fff; border: 0; border-radius: 0; padding: 0; margin: 0 0 6pt;
+      border-bottom: 0.5pt solid #e6eef4;
+    }
+    .job::before { display: none; }
+    .job .co { color: #0f1a24; font-size: 10.6pt; }
+    .job .co .sep { color: #0b6fa4; }
+    .job .ttl { color: #1d2b38; }
+    .job .meta { color: #506273; font-size: 8.4pt; }
+    .job .loc { color: #6b7c8b; font-size: 8pt; }
+    .job ul { gap: 2pt; margin-top: 3pt; }
+    .job li { color: #23323f; font-size: 9.2pt; line-height: 1.24; padding-left: 10pt; }
+    .job li::before { background: #0b6fa4; width: 4px; height: 4px; top: 0.5em; }
+    .job li b { color: #0f1a24; }
+    .earlier { color: #3a4a58; font-size: 9pt; }
+    .earlier b { color: #0f1a24; }
+
+    .grid2 { grid-template-columns: 1.1fr 1fr; gap: 20pt; margin-top: 2pt; }
+    .stack { gap: 5pt; }
+    .list { gap: 2pt; }
+    .stacklist { gap: 3pt; }
+    .list li { color: #23323f; font-size: 9.2pt; padding-left: 10pt; }
+    .list li::before { background: #0b6fa4; }
+    .list li b { color: #0f1a24; }
+    .list li .pno { color: #0b6fa4; }
+    .inline-line { color: #23323f; font-size: 9.2pt; padding-left: 10pt; }
+    .inline-line::before { background: #0b6fa4; top: 0.5em; }
+    .kv .k { color: #0f1a24; font-size: 9.4pt; }
+    .kv .v { color: #52626f; font-size: 8.6pt; }
+    .patent .no { color: #0b6fa4; font-size: 8.6pt; }
+    .patent .nm { color: #23323f; font-size: 9pt; }
+
+    footer.pg { display: none !important; }
+    footer.pg a { color: #506273; }
+    a { color: inherit; text-decoration: none; }
+    /* Keep atomic blocks whole; let jobs and big sections flow across pages */
+    .results, .result, .skillrow, .patent, .kv { break-inside: avoid; page-break-inside: avoid; }
+    h2 { break-after: avoid; page-break-after: avoid; }
+    .job .jh, .job .loc { break-after: avoid; page-break-after: avoid; }
+    .job li { break-inside: avoid; page-break-inside: avoid; }
+    .job { orphans: 2; widows: 2; }
+    .summary { orphans: 3; widows: 3; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top bar (screen only) -->
+  <div class="topbar no-print">
+    <div class="who">John Y. Miller <span>·</span> Snowflake Architect</div>
+    <div class="actions">
+      <a class="btn ghost" href="index.html">← Home</a>
+      <a class="btn primary" href="assets/John-Y-Miller-Snowflake-Architect-Resume.pdf" download>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        Download PDF
+      </a>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ── Hero ── -->
+    <header class="hero">
+      <div class="eyebrow">Snowflake Architect · Enterprise Data</div>
+      <h1>John Y. Miller</h1>
+      <div class="role-line">Enterprise Data Architecture · Data Warehousing · Governance</div>
+      <div class="tech-line">Snowflake · Azure · AWS · dbt · Cortex AI</div>
+
+      <div class="engage">
+        <span class="dot"></span>
+        <span><b>Engagements:</b>&nbsp;contract · fractional · remote or SF Bay Area onsite</span>
+      </div>
+
+      <div class="contacts">
+        <a class="chip" href="mailto:john@milbird.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          john@milbird.com
+        </a>
+        <a class="chip" href="https://www.linkedin.com/in/jymiller" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a1.94 1.94 0 11-3.88 0 1.94 1.94 0 013.88 0zM3.4 8.4h3.1V21H3.4V8.4zM9.3 8.4h2.97v1.72h.04c.41-.78 1.42-1.6 2.93-1.6 3.13 0 3.71 2.06 3.71 4.74V21h-3.1v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9.3V8.4z"/></svg>
+          linkedin.com/in/jymiller
+        </a>
+        <a class="chip" href="https://milbird.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3z"/></svg>
+          milbird.com
+        </a>
+        <span class="chip">San Francisco, CA</span>
+      </div>
+    </header>
+
+    <!-- ── Selected results ── -->
+    <div class="results">
+      <div class="result">
+        <div class="n">13<small>&nbsp;wk</small></div>
+        <div class="l">Secure Snowflake platform carried dev&nbsp;→&nbsp;prod for a bank</div>
+      </div>
+      <div class="result">
+        <div class="n"><small>~$</small>2M<small>/yr</small></div>
+        <div class="l">Saved for an asset manager by redesigning data sharing</div>
+      </div>
+      <div class="result">
+        <div class="n">2</div>
+        <div class="l">U.S. patents in data quality (incl. ML rule generation)</div>
+      </div>
+      <div class="result">
+        <div class="n">25<small>+ yrs</small></div>
+        <div class="l">Across financial services, public sector &amp; enterprise</div>
+      </div>
+    </div>
+
+    <!-- ── Summary ── -->
+    <section>
+      <h2>Summary</h2>
+      <p class="summary">
+        Snowflake and enterprise data architect with 25+ years across financial services, public sector, and
+        enterprise clients. Former <b>Snowflake Senior Solution Architect</b> and resident architect at leading
+        financial institutions; I design and deliver secure, governed <b>data warehouse, lakehouse, and
+        data-mesh platforms</b> on Snowflake, Azure, and AWS — with deep governance, security, and compliance
+        practice. I translate business needs into data solutions and provide technical leadership to data
+        engineering and analytics teams. Two U.S. patents in data quality; organizer of the
+        <b>Snowflake Bay Area Users Group</b>.
+      </p>
+    </section>
+
+    <!-- ── Core skills ── -->
+    <section>
+      <h2>Core Skills</h2>
+      <div class="skills">
+        <div class="skillrow">
+          <div class="cat">Data Architecture</div>
+          <div class="tags">
+            <span class="tag">Enterprise data architecture</span><span class="tag">Data modeling</span>
+            <span class="tag">Warehouse / lake / lakehouse</span><span class="tag">Data mesh</span>
+            <span class="tag">Medallion</span><span class="tag">Semantic models</span>
+            <span class="tag">Data contracts</span><span class="tag">Data sharing</span><span class="tag">Integration</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <div class="cat">Snowflake</div>
+          <div class="tags">
+            <span class="tag">SQL</span><span class="tag">Tasks</span><span class="tag">Streams</span>
+            <span class="tag">Dynamic Tables</span><span class="tag">Stages · Pipes</span><span class="tag">Catalogs · Iceberg</span>
+            <span class="tag">dbt · SchemaChange</span><span class="tag">Cortex AI (Agents · Search · Analyst)</span>
+            <span class="tag">Turnkey EDW provisioning</span><span class="tag">Performance &amp; cost</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <div class="cat">Cloud &amp; Data Eng</div>
+          <div class="tags">
+            <span class="tag">Azure (Synapse · ADF · Fabric · ADLS Gen2 · DevOps · Entra ID)</span>
+            <span class="tag">AWS (S3 · Athena)</span><span class="tag">GCP</span>
+            <span class="tag">Python · Bash · Spark</span><span class="tag">Talend · Matillion · Fivetran · Airflow</span>
+            <span class="tag">ETL / ELT · CI/CD</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <div class="cat">Governance &amp; Access</div>
+          <div class="tags">
+            <span class="tag">Two-layer RBAC (13 principles)</span><span class="tag">Policies · tags · masking · row-access</span>
+            <span class="tag">SSO (SAML2) / SCIM</span><span class="tag">PrivateLink</span>
+            <span class="tag">SOX · CCPA · GDPR</span><span class="tag">Collibra · Alation · OpenMetadata · BigID · Informatica</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <div class="cat">BI &amp; Analytics</div>
+          <div class="tags">
+            <span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Cortex Analyst</span><span class="tag">Semantic models</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <div class="cat">AI-Native / Agentic</div>
+          <div class="tags">
+            <span class="tag">Agent harnesses (Skills · SubAgents · Memory)</span>
+            <span class="tag">Claude Code · OpenAI Codex · Cortex Code</span>
+            <span class="tag">RAG</span><span class="tag">Knowledge graphs · taxonomies</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Experience ── -->
+    <section>
+      <h2>Experience</h2>
+      <div class="xp">
+
+        <div class="job">
+          <div class="jh">
+            <div class="co">Milbird <span class="sep">—</span> <span class="ttl">Founder</span></div>
+            <div class="meta">January 2025 – Present</div>
+          </div>
+          <div class="loc">San Francisco, CA</div>
+          <ul>
+            <li>Designed and delivered a secure, governed Snowflake platform for a commercial bank in a <b>13-week dev-to-prod engagement</b>: Azure AD SSO + SCIM (SAML2), two-layer RBAC (<b>20 custom roles, 3,700+ grants</b>), 4-layer defense in depth, and a dbt medallion foundation whose parameterized scripts stand up prod from the same source as non-prod.</li>
+            <li>Turned unstructured lending documents into a Snowflake-native, AI-powered data asset for a healthcare-practice lender — pipeline <b>processed 67 documents</b>, <b>normalized 460 terms to 25</b>, and shipped <b>4 live Snowflake-native AI apps</b> (a Cortex Agent, a Cortex Search service, Cortex Analyst over semantic views, and a Streamlit app), packaged as a reusable knowledge-discovery framework.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="jh">
+            <div class="co">BBI <span class="sep">—</span> <span class="ttl">VP Strategy</span></div>
+            <div class="meta">March 2023 – February 2024</div>
+          </div>
+          <div class="loc">San Francisco, CA</div>
+          <ul>
+            <li>Stood up BBI's Snowflake Solutions practice; reached <b>Snowflake Select Partner</b> status with a new sales and delivery capability.</li>
+            <li>Led a Snowflake architecture assessment for a Travel &amp; Entertainment client and solution architecture for a credit-bureau services provider in financial services.</li>
+            <li>Delivered AI-integrated data governance (OpenMetadata + generative AI), an internal data marketplace with data contracts, and a LangChain/Streamlit RAG system for internal knowledge access.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="jh">
+            <div class="co">Snowflake <span class="sep">—</span> <span class="ttl">Senior Solution Architect, Financial Services Strategy</span></div>
+            <div class="meta">June 2021 – March 2023</div>
+          </div>
+          <div class="loc">San Francisco, CA</div>
+          <ul>
+            <li>Served as Resident Solution Architect and Technical Account Manager for financial-services clients including <b>City National Bank, DTCC, MetaBank, and New American Funding</b>.</li>
+            <li>Designed and executed Snowflake data strategy, architecture, and roadmaps aligning the platform to business goals.</li>
+            <li>Delivered best-practice engagements across governance, security, cost management, data engineering, and access management; <b>saved an asset-management client ~$2M/year</b> by redesigning data sharing.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="jh">
+            <div class="co">Accenture <span class="sep">—</span> <span class="ttl">Data Strategy, Solution Architect &amp; Data Engineering</span></div>
+            <div class="meta">June 2019 – May 2021</div>
+          </div>
+          <div class="loc">San Francisco Bay Area · joined via Clarity Insights (acquired by Accenture, June 2020)</div>
+          <ul>
+            <li>Data program lead for a utility: delivered the data platform driving customers to a conversational-AI chatbot, cutting handled call volume and cost to serve (Genesys, Oracle, Informatica, Cognos, SQL, Python).</li>
+            <li>Solution lead for a wealth-management firm: designed and built governed self-serve analytics, reducing outage risk and cost (AWS, Snowflake, Denodo, Tableau, Cloudera, SQL Server).</li>
+            <li>Technical architect for an insurer: migrated Teradata to Snowflake with Informatica under data-governance requirements.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="jh">
+            <div class="co">Silicon Valley Data Solutions Group <span class="sep">—</span> <span class="ttl">Founder &amp; Solution Architect</span></div>
+            <div class="meta">December 2017 – 2019</div>
+          </div>
+          <div class="loc">San Francisco Bay Area · independent consulting practice (continued intermittently through 2024)</div>
+          <ul>
+            <li>Led incorporation of Azure data and analytics services into a global bank's data-science teams — a compliant, auditable, repeatable platform (Azure Machine Learning, Azure Data Factory, Azure Data Lake).</li>
+            <li>Added automation and auditing to model-development processes to meet bank regulations (FastScore, Airflow, Spark, Jupyter); led machine learning for muni-bond pricing enabling price-transparency compliance.</li>
+            <li>Delivered data governance for statewide contact-center KPIs on a State of California CCaaS rollout — cross-team profiling and validation plus an automated toolkit on Snowflake, AWS Athena, Tableau, and Python.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="jh">
+            <div class="co">Camus Group, LLC <span class="sep">—</span> <span class="ttl">Founder</span></div>
+            <div class="meta">December 2015 – June 2017</div>
+          </div>
+          <div class="loc">San Francisco Bay Area</div>
+          <ul>
+            <li>Founded a practice connecting Bay Area data / data-science startups into the Fortune 500; clients included Accenture, EY, Trifacta, Diyotta, and OSIsoft.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="jh">
+            <div class="co">Accenture <span class="sep">—</span> <span class="ttl">Partner, Global Chief Architect – Data Insights R&amp;D</span></div>
+            <div class="meta">September 2008 – July 2015</div>
+          </div>
+          <div class="loc">Toronto, Canada &amp; San Francisco, CA</div>
+          <ul>
+            <li>Built the Accenture Data Supply Chain architecture — integrating Hadoop, NoSQL, and web-scale tech with classic warehouse/lake design — plus a globally adopted data-literacy curriculum.</li>
+            <li>Created the Data Quality Rules Accelerator, an AI/ML technique generating data-quality rules from existing data, adopted into smart-grid architecture and at enterprise clients (<b>basis for two U.S. patents</b>).</li>
+          </ul>
+        </div>
+
+        <p class="earlier">
+          <b>Earlier:</b> Global CTO, Energy Practice — Information Management, HP (2007–2008) · CTO, Knightsbridge Solutions (1999–2007) · Senior Consultant, Emergent (1997–1998) · Systems Engineer, IBM (1993–1997)
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Lower grid ── -->
+    <div class="grid2">
+      <div class="stack">
+        <section style="margin-top:0">
+          <h2>Leadership &amp; Community</h2>
+          <ul class="list">
+            <li><b>Organizer</b>, Snowflake Bay Area Users Group</li>
+            <li><b>VP of Programs &amp; Board Member</b>, DAMA Los Angeles; Host, "DAMA LA Presents"</li>
+            <li><b>Board Member</b>, DAMA San Francisco Bay Area</li>
+          </ul>
+        </section>
+
+        <section style="margin-top:0">
+          <h2>Education</h2>
+          <ul class="list">
+            <li><b>Simon Fraser University</b> — B.A.Sc., Computer Engineering (1987–1993)</li>
+            <li><b>Northwestern University</b> — Executive Education: Leading High-Impact Teams (2000)</li>
+          </ul>
+        </section>
+
+        <section style="margin-top:0">
+          <h2>Languages</h2>
+          <p class="inline-line">English (native) · French (professional working)</p>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section style="margin-top:0">
+          <h2>Certifications</h2>
+          <ul class="list">
+            <li>Snowflake <b>SnowPro Core</b></li>
+            <li><b>AWS Certified Solutions Architect – Associate</b></li>
+            <li>Snowflake DCDF (training badge)</li>
+            <li>Google Generative AI Fundamentals · Responsible AI · CD &amp; DevOps</li>
+          </ul>
+        </section>
+
+        <section style="margin-top:0">
+          <h2>Patents</h2>
+          <ul class="list">
+            <li><b class="pno">US 8,412,735</b> — Automated data-quality rule generation (conditional functional dependencies)</li>
+            <li><b class="pno">US 8,666,919</b> — Data quality management: profiling, linking, cleansing &amp; migration</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <footer class="pg">
+      <span class="made">Also on the web at <a href="https://jymiller.github.io/jymiller/">jymiller.github.io/jymiller</a></span>
+      <span>John Y. Miller · Snowflake Architect · Milbird</span>
+    </footer>
+
+  </div>
+</body>
+</html>
