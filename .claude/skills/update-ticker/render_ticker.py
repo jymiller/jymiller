@@ -26,12 +26,12 @@ PACIFIC = ZoneInfo("America/Los_Angeles")
 REPO_ROOT = Path(__file__).resolve().parents[3]
 INDEX = REPO_ROOT / "index.html"
 INDENT = "        "
-SEP = '<span class="ticker-sep">❄</span>'
+SEP = '<span class="ticker-sep">·</span>'
 INTRO = (
     '<a class="ticker-story" href="https://usergroups.snowflake.com/bay-area/">'
-    "🏔️ <strong>Now leading the Snowflake Bay Area Users Group</strong> — "
+    "<strong>Now leading the Snowflake Bay Area Users Group</strong> — "
     "bringing the community together around Snowflake, data engineering, and AI. "
-    '&nbsp;·&nbsp; <span class="cta">Click here →</span></a>'
+    '<span class="cta">→</span></a>'
 )
 
 
@@ -85,11 +85,11 @@ def parse_events(page):
     return upcoming, past
 
 
-def stanza(emoji, label, ev, cta):
+def stanza(label, ev, cta):
     return (
         f'<a class="ticker-story" href="{html.escape(ev["url"], quote=True)}">'
-        f'{emoji} <strong>{label}: {html.escape(ev["title"])} — {fmt(ev["dt"])}</strong> '
-        f'&nbsp;·&nbsp; <span class="cta">{cta} →</span></a>'
+        f'<strong>{label}: {html.escape(ev["title"])} — {fmt(ev["dt"])}</strong> '
+        f'<span class="cta">{cta} →</span></a>'
     )
 
 
@@ -99,9 +99,9 @@ def main():
 
     parts = [INTRO]
     if upcoming:
-        parts.append(stanza("🛠️", "Next up", upcoming[0], "Details"))
+        parts.append(stanza("Next up", upcoming[0], "Details"))
     if past:
-        parts.append(stanza("✅", "Last meetup", past[0], "Recap"))
+        parts.append(stanza("Last meetup", past[0], "Recap"))
 
     lines = []
     for i, part in enumerate(parts):
