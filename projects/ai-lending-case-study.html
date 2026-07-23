@@ -5,114 +5,327 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Systems — Case Study (Healthcare-Practice Lending) | John Y Miller</title>
 <style>
+  /* Self-hosted Geist (variable) — matches the homepage, no font-CDN dependency.
+     Case-study pages live in projects/, so assets are one level up. */
+  @font-face {
+    font-family: "Geist";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("../assets/fonts/Geist.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("../assets/fonts/GeistMono.woff2") format("woff2");
+  }
+
   :root {
-    --bg: #0a0e1a; --bg-2: #0b1226; --card: #1e293b; --card-2: #172033;
-    --border: #334155; --text: #cbd5e1; --muted: #94a3b8; --heading: #f8fafc;
-    --blue: #38bdf8; --green: #4ade80; --amber: #fbbf24; --teal: #2dd4bf;
-    --purple: #c084fc; --orange: #fb923c; --pink: #f472b6;
+    /* Terminal system — true-neutral near-black, one ice-steel accent */
+    --ground: #0b0d0f;
+    --surface: #14181b;
+    --raised: #1b2024;
+    --hair: rgba(255, 255, 255, 0.07);
+    --keyline: rgba(255, 255, 255, 0.12);
+
+    --text: #f0f3f4;
+    --platinum: #c8cdd0;
+    --muted: #8b969d;
+    --faint: #626c72;
+
+    --steel: #5aa6c4;
+    --steel-border: #24424f;
+    --steel-soft: rgba(90, 166, 196, 0.40);
+
+    --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", "Cascadia Code", Menlo, monospace;
   }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
-    background: var(--bg); color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6; font-size: 14.5px;
+    font-family: var(--sans);
+    background: var(--ground);
+    color: var(--text);
+    line-height: 1.55;
+    font-weight: 400;
+    font-size: 15px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(2rem, 5vh, 3.4rem) 4vw 4rem;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .shell { max-width: 1000px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
-  code { font-family: ui-monospace, Menlo, monospace; font-size: 0.85em; background: var(--bg-2); border: 1px solid var(--border); padding: 1px 6px; border-radius: 4px; color: var(--teal); }
+  .shell { width: 100%; max-width: 960px; }
 
-  header.top { border-bottom: 1px solid var(--border); padding-bottom: 1.6rem; margin-bottom: 1.6rem; }
-  header.top .kicker { color: var(--purple); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; }
-  header.top h1 { font-size: 1.9rem; color: var(--heading); font-weight: 700; letter-spacing: -0.01em; margin-top: 0.3rem; }
-  header.top .sub { color: var(--muted); font-size: 1.02rem; margin-top: 0.5rem; max-width: 82ch; }
-  header.top .role { color: var(--text); font-size: 0.95rem; margin-top: 0.8rem; max-width: 82ch; }
-  header.top .role b { color: var(--heading); }
-  header.top .byline { color: var(--muted); font-size: 0.82rem; margin-top: 0.9rem; }
-  header.top .byline b { color: var(--text); }
+  a { color: var(--steel); text-decoration: none; }
 
-  /* Pillars */
-  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 1.6rem 0 0.4rem; }
-  .pillar { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--purple); border-radius: 9px; padding: 0.85rem 0.95rem; }
-  .pillar .n { color: var(--heading); font-size: 1.5rem; font-weight: 700; line-height: 1; }
-  .pillar .l { color: var(--muted); font-size: 0.8rem; margin-top: 0.35rem; }
-  .pillar.p1 { border-top-color: var(--green); }
-  .pillar.p2 { border-top-color: var(--purple); }
-  .pillar.p3 { border-top-color: var(--blue); }
-  .pillar.p4 { border-top-color: var(--amber); }
+  code {
+    font-family: var(--mono);
+    font-size: 0.84em;
+    background: var(--raised);
+    border: 1px solid var(--hair);
+    padding: 1px 6px;
+    border-radius: 5px;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
 
-  h2 { font-size: 1.3rem; color: var(--heading); font-weight: 700; margin: 2.8rem 0 0.3rem; display: flex; align-items: baseline; gap: 0.6rem; }
-  h2 .sec { font-family: ui-monospace, Menlo, monospace; font-size: 0.8rem; color: var(--purple); background: var(--bg-2); border: 1px solid var(--border); border-radius: 5px; padding: 1px 8px; }
-  .h2sub { color: var(--muted); font-size: 0.95rem; margin: 0.3rem 0 1.1rem; max-width: 84ch; }
+  /* Back link — small mono steel */
+  a.home {
+    display: inline-block;
+    font-family: var(--mono);
+    color: var(--steel);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    margin-bottom: 1.7rem;
+  }
+  a.home:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-  h3 { font-size: 1.02rem; color: var(--heading); font-weight: 700; margin: 1.3rem 0 0.5rem; }
+  /* Header */
+  header.top { border-bottom: 1px solid var(--hair); padding-bottom: 1.7rem; margin-bottom: 1.9rem; }
+  header.top .kicker {
+    font-family: var(--mono);
+    color: var(--faint);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+  }
+  header.top h1 {
+    font-family: var(--sans);
+    font-size: clamp(1.7rem, 3.6vw, 2.2rem);
+    color: var(--platinum);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-top: 0.6rem;
+  }
+  header.top .sub { color: var(--muted); font-size: 1.02rem; margin-top: 0.75rem; max-width: 82ch; }
+  header.top .role { color: var(--text); font-size: 0.95rem; margin-top: 0.9rem; max-width: 82ch; }
+  header.top .role b { color: var(--platinum); font-weight: 600; }
+  header.top .byline { font-family: var(--mono); color: var(--faint); font-size: 0.76rem; margin-top: 1rem; letter-spacing: 0.02em; }
+  header.top .byline em { font-style: italic; color: var(--faint); }
+
+  /* Metric bands — pillars (hero) + stats (section 3): frameless, mono, hairline dividers */
+  .pillars, .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1.8rem 0 0.4rem;
+  }
+  .stats { margin: 0.9rem 0; }
+  .pillar, .stat {
+    padding: 1.05rem 1.15rem;
+    border-left: 1px solid var(--hair);
+    min-width: 0;
+  }
+  .pillar:first-child, .stat:first-child { border-left: 0; }
+  .pillar .n, .stat .v {
+    display: block;
+    font-family: var(--mono);
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+  .pillar .l, .stat .l {
+    display: block;
+    color: var(--muted);
+    font-size: 0.74rem;
+    margin-top: 0.5rem;
+    line-height: 1.35;
+  }
+
+  h2 {
+    font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+    color: var(--platinum);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 3rem 0 0.3rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+  }
+  h2 .sec {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--faint);
+    background: transparent;
+    border: 1px solid var(--steel-soft);
+    border-radius: 5px;
+    padding: 0.2em 0.5em;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  .h2sub { color: var(--muted); font-size: 0.95rem; margin: 0.4rem 0 1.2rem; max-width: 84ch; }
+
+  h3 { font-size: 1.02rem; color: var(--platinum); font-weight: 600; letter-spacing: -0.01em; margin: 1.5rem 0 0.5rem; }
 
   /* Build cards */
-  .builds { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
-  .build { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 9px; padding: 0.95rem 1.1rem; }
-  .build .bh { color: var(--heading); font-weight: 700; font-size: 1rem; }
-  .build .live { display: inline-block; background: rgba(74,222,128,0.15); color: var(--green); border: 1px solid var(--green); border-radius: 4px; padding: 0 6px; font-size: 0.66rem; font-weight: 700; margin-left: 0.4rem; vertical-align: middle; }
-  .build .bd { color: var(--text); font-size: 0.9rem; margin-top: 0.35rem; }
-  .build .meta { color: var(--muted); font-size: 0.76rem; margin-top: 0.5rem; font-family: ui-monospace, Menlo, monospace; line-height: 1.5; }
-  .build .meta b { color: var(--teal); font-weight: 600; }
+  .builds { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  .build {
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    border-left: 2px solid var(--steel);
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+  }
+  .build .bh { color: var(--text); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; }
+  .build .live {
+    display: inline-block;
+    font-family: var(--mono);
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--steel-soft);
+    border-radius: 5px;
+    padding: 0.18em 0.5em;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .build .bd { color: var(--muted); font-size: 0.9rem; margin-top: 0.4rem; }
+  .build .meta { color: var(--faint); font-size: 0.76rem; margin-top: 0.6rem; font-family: var(--mono); line-height: 1.6; }
+  .build .meta b { color: var(--steel); font-weight: 500; }
 
   /* Outcomes band */
-  .outcomes-lead { font-size: 1.15rem; color: var(--heading); font-weight: 700; margin: 2.2rem 0 0.3rem; }
+  .outcomes-lead { font-size: 1.15rem; color: var(--platinum); font-weight: 600; letter-spacing: -0.01em; margin: 2.4rem 0 0.3rem; }
   .outcomes-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.1rem; }
-  .outcomes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
-  .oc { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 10px; padding: 0.95rem 1.15rem; }
-  .oc .oh { color: var(--heading); font-weight: 700; font-size: 1.02rem; }
-  .oc .ob { color: var(--text); font-size: 0.9rem; margin-top: 0.35rem; }
-  .oc .oe { color: var(--muted); font-size: 0.78rem; margin-top: 0.5rem; }
-  .oc .oe b { color: var(--teal); font-weight: 600; }
-  .oc.c2 { border-left-color: var(--purple); }
-  .oc.c3 { border-left-color: var(--blue); }
-  .oc.c4 { border-left-color: var(--amber); }
-
-  /* Layers / phases */
-  .layers { display: flex; flex-direction: column; gap: 0.5rem; }
-  .lyr { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; display: grid; grid-template-columns: 42px 1fr; gap: 0.9rem; align-items: start; }
-  .lyr .num { font-family: ui-monospace, Menlo, monospace; font-weight: 700; color: var(--purple); font-size: 1.1rem; text-align: center; }
-  .lyr .t { color: var(--heading); font-weight: 700; font-size: 0.95rem; }
-  .lyr .d { color: var(--muted); font-size: 0.86rem; margin-top: 0.15rem; }
-
-  .phases { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
-  .ph { background: var(--card-2); border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem 0.75rem; }
-  .ph .pn { font-family: ui-monospace, Menlo, monospace; color: var(--amber); font-size: 0.72rem; font-weight: 700; }
-  .ph .pt { color: var(--heading); font-weight: 600; font-size: 0.85rem; margin-top: 0.2rem; }
-  .ph .pd { color: var(--muted); font-size: 0.76rem; margin-top: 0.25rem; }
-
-  table { width: 100%; border-collapse: collapse; margin: 0.7rem 0; font-size: 0.9rem; }
-  th, td { text-align: left; padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
-  th { color: var(--muted); font-weight: 600; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.04em; }
-  td b { color: var(--heading); }
-
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.55rem; margin: 0.6rem 0; }
-  .stat { background: linear-gradient(135deg, rgba(45,212,191,0.08), rgba(45,212,191,0.02)); border: 1px solid rgba(45,212,191,0.3); border-radius: 8px; padding: 0.75rem 0.9rem; }
-  .stat .v { color: var(--heading); font-size: 1.35rem; font-weight: 700; line-height: 1; }
-  .stat .l { color: var(--muted); font-size: 0.76rem; margin-top: 0.3rem; }
-
-  .callout { background: rgba(192,132,252,0.06); border: 1px solid rgba(192,132,252,0.32); border-radius: 8px; padding: 0.85rem 1.05rem; margin: 1.2rem 0; font-size: 0.92rem; }
-  .callout b { color: var(--purple); }
-
-  ul.tight { margin: 0.5rem 0 0.5rem 1.2rem; } ul.tight li { margin: 0.3rem 0; }
-
-  /* Stack chips */
-  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; margin-top: 0.4rem; }
-  .chips span { font-size: 0.82rem; background: var(--bg-2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; color: var(--text); white-space: nowrap; }
-
-  footer { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.86rem; }
-  footer .name { color: var(--heading); font-weight: 700; font-size: 1rem; }
-  footer .tag { color: var(--purple); font-size: 0.82rem; margin-top: 0.15rem; }
-  footer .links { margin-top: 0.6rem; }
-  footer .links a { color: var(--blue); text-decoration: none; }
-  footer .links a:hover { text-decoration: underline; }
-  footer .fine { color: var(--muted); font-size: 0.78rem; margin-top: 0.9rem; }
-
-  @media (max-width: 760px) {
-    .pillars, .builds, .stats, .outcomes { grid-template-columns: repeat(2, 1fr); }
-    .phases { grid-template-columns: 1fr 1fr; }
+  .outcomes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  .oc {
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    border-left: 2px solid var(--steel);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
   }
-  a.home { display: inline-block; color: var(--blue); text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.4rem; }
-  a.home:hover { text-decoration: underline; }
+  .oc .oh { color: var(--text); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.01em; }
+  .oc .ob { color: var(--muted); font-size: 0.9rem; margin-top: 0.4rem; }
+  .oc .oe { font-family: var(--mono); color: var(--faint); font-size: 0.74rem; margin-top: 0.6rem; letter-spacing: 0.01em; line-height: 1.55; }
+  .oc .oe b { color: var(--steel); font-weight: 500; }
+
+  /* Layers — the 4-layer framework (calm neutral sequence, mono numbers) */
+  .layers { display: flex; flex-direction: column; gap: 0.55rem; }
+  .lyr {
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    border-radius: 10px;
+    padding: 0.8rem 1.05rem;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 0.9rem;
+    align-items: start;
+  }
+  .lyr .num {
+    font-family: var(--mono);
+    font-weight: 500;
+    color: var(--faint);
+    font-size: 1.05rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .lyr .t { color: var(--text); font-weight: 600; font-size: 0.95rem; }
+  .lyr .d { color: var(--muted); font-size: 0.86rem; margin-top: 0.2rem; }
+
+  /* Phases — 5 repeatable steps (raised cards, mono eyebrow labels) */
+  .phases { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.55rem; }
+  .ph {
+    background: var(--raised);
+    border: 1px solid var(--hair);
+    border-radius: 10px;
+    padding: 0.75rem 0.8rem;
+  }
+  .ph .pn {
+    font-family: var(--mono);
+    color: var(--faint);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .ph .pt { color: var(--text); font-weight: 600; font-size: 0.85rem; margin-top: 0.3rem; letter-spacing: -0.005em; }
+  .ph .pd { color: var(--muted); font-size: 0.76rem; margin-top: 0.3rem; }
+
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  th {
+    font-family: var(--mono);
+    color: var(--faint);
+    font-weight: 500;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  td { color: var(--muted); }
+  td b { color: var(--text); font-weight: 600; }
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--hair);
+    border-left: 2px solid var(--steel);
+    border-radius: 10px;
+    padding: 0.95rem 1.15rem;
+    margin: 1.4rem 0;
+    font-size: 0.94rem;
+    color: var(--muted);
+  }
+  .callout b { color: var(--platinum); font-weight: 600; }
+  .callout em { color: var(--text); font-style: italic; }
+
+  ul.tight { margin: 0.6rem 0 0.6rem 1.2rem; color: var(--muted); }
+  ul.tight li { margin: 0.35rem 0; }
+  ul.tight li b { color: var(--text); font-weight: 600; }
+
+  /* Stack chips — quiet mono tokens */
+  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem 0.5rem; margin-top: 0.5rem; }
+  .chips span {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    background: transparent;
+    border: 1px solid var(--hair);
+    border-radius: 6px;
+    padding: 0.28em 0.65em;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  footer { margin-top: 3.2rem; padding-top: 1.5rem; border-top: 1px solid var(--hair); color: var(--muted); font-size: 0.86rem; }
+  footer .name { color: var(--platinum); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; }
+  footer .tag { font-family: var(--mono); color: var(--faint); font-size: 0.76rem; margin-top: 0.25rem; letter-spacing: 0.02em; }
+  footer .links { margin-top: 0.7rem; }
+  footer .links a { color: var(--steel); text-decoration: none; border-bottom: 1px solid var(--steel-soft); }
+  footer .links a:hover { border-bottom-color: var(--steel); }
+  footer .fine { color: var(--faint); font-size: 0.78rem; margin-top: 1rem; max-width: 84ch; }
+
+  @media (max-width: 900px) {
+    .builds, .outcomes { grid-template-columns: 1fr; }
+    .phases { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .pillars, .stats { grid-template-columns: repeat(2, 1fr); }
+    .pillar:nth-child(odd), .stat:nth-child(odd) { border-left: 0; }
+    .pillar:nth-child(even), .stat:nth-child(even) { border-left: 1px solid var(--hair); }
+    .pillar:nth-child(n+3), .stat:nth-child(n+3) { border-top: 1px solid var(--hair); }
+    .phases { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
 </style>
 </head>
 <body>
@@ -218,7 +431,7 @@
   </div>
 </div>
 <p class="h2sub" style="margin-top:1rem">
-  <b style="color:var(--heading)">AI functions in the toolbox:</b>
+  <b style="color:var(--text)">AI functions in the toolbox:</b>
   <code>AI_COMPLETE</code> <code>AI_EXTRACT</code> <code>AI_PARSE_DOCUMENT</code>
   <code>AI_CLASSIFY</code> — used across discovery, extraction, and classification.
 </p>
@@ -299,7 +512,7 @@
   <tr><td><b>Lending Performance Predictor</b></td><td>"Default rate for practices priced above 1× revenue?"</td><td>Investor</td></tr>
 </table>
 <p class="h2sub">
-  <b style="color:var(--heading)">Why this compounds</b> — in work like this the moat isn't the
+  <b style="color:var(--text)">Why this compounds</b> — in work like this the moat isn't the
   model. It's the proprietary corpus a business already receives through its own workflow, plus
   the institutional knowledge encoded around it (controlled vocabulary, source dialects). The
   highest-value layer is correlating that data with real outcomes — something only the operator
@@ -310,11 +523,11 @@
 <h2><span class="sec">05</span> The AI-native build model</h2>
 <div class="h2sub">How the work itself was built — a two-agent operating model that pairs a general-purpose driver with a platform specialist.</div>
 <div class="builds">
-  <div class="build" style="border-left-color:var(--purple)">
+  <div class="build">
     <div class="bh">Claude Code — the driver</div>
     <div class="bd">General development, file editing, refactoring, orchestration, git, and all the HTML/Python/SQL tooling. Holds the guardrails and drives the reasoning.</div>
   </div>
-  <div class="build" style="border-left-color:var(--teal)">
+  <div class="build">
     <div class="bh">Cortex Code — the platform specialist</div>
     <div class="bd">50+ Snowflake-native skills (data-quality, lineage, cost-intelligence, agent, semantic-view, ML). Invoked by shelling out — direct subcommands when the action is known, prompted skills when reasoning is needed.</div>
   </div>

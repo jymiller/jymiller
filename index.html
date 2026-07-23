@@ -20,6 +20,14 @@
     font-display: swap;
     src: url("assets/fonts/GeistMono.woff2") format("woff2");
   }
+  /* Inter — used only for the Enid wordmark, per Enid's brand */
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/Inter.woff2") format("woff2");
+  }
   :root {
     /* True-neutral near-black ground — no blue cast */
     --ground: #0b0d0f;
@@ -259,10 +267,11 @@
   .enid-lockup { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
   .enid-mark { display: block; flex-shrink: 0; }
   .enid-name {
-    font-family: var(--sans);
-    font-weight: 600;
+    font-family: "Inter", var(--sans);
+    font-weight: 500;
     font-size: clamp(1.05rem, 1.7vw, 1.28rem);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.005em;
+    font-feature-settings: "ss01" 1, "cv11" 1;
     color: var(--text);
     line-height: 1;
   }
@@ -312,16 +321,16 @@
   .enid-bridge strong { color: var(--text); font-weight: 500; }
   .enid-cta {
     justify-self: start;
-    color: #04241b;
-    background: var(--enid);
+    color: var(--enid-light);
+    background: transparent;
     font-weight: 500;
     font-size: clamp(0.8rem, 1.15vw, 0.92rem);
     text-decoration: none;
-    padding: 0.52rem 1.05rem;
-    border-radius: 7px;
-    transition: background 0.15s ease, transform 0.12s ease;
+    padding: 0.15rem 0;
+    border-bottom: 1px solid rgba(0, 162, 110, 0.55);
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
-  .enid-cta:hover { background: var(--enid-light); color: #003324; transform: translateY(-1px); }
+  .enid-cta:hover { color: #ffffff; border-bottom-color: var(--enid-light); }
 
   /* ── THE RANGE — collapsible depth ────────────────────────────────── */
   .range { margin-top: clamp(1rem, 2.2vh, 1.5rem); }
@@ -503,8 +512,8 @@
         <span class="enid-lockup">
           <svg class="enid-mark" width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect width="22" height="22" rx="4" fill="#00a26e" />
-            <rect x="4.5" y="4.5" width="13" height="13" rx="1" stroke="#ffffff" />
-            <rect x="8" y="8" width="6" height="6" rx="1" fill="#ffffff" />
+            <rect x="4" y="4" width="14" height="14" stroke="#ffffff" stroke-width="1" />
+            <rect x="8" y="8" width="6" height="6" fill="#ffffff" />
           </svg>
           <span class="enid-name">enid</span>
         </span>
